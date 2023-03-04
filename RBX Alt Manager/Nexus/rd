@@ -1,0 +1,50 @@
+repeat task.wait() until game:GetService("Players").LocalPlayer
+local level
+local Player = game:GetService("Players").LocalPlayer.Name
+local des    = "http://localhost:7963/SetDescription?Account="
+local ali = "http://localhost:7963/SetAlias?Account="
+level = game:GetService("Players").LocalPlayer.Data.Level.Value
+local sea
+if game.PlaceId == 2753915549 then
+    sea = 1
+elseif game.PlaceId == 4442272183 then
+    sea = 2
+elseif game.PlaceId == 4442272183 then
+    sea = 3
+end
+syn.request({
+    Url    = des.. Player,
+    Method = "POST",
+    Body   = tostring(level)
+})
+syn.request({
+    Url    = ali.. Player,
+    Method = "POST",
+    Body   = tostring(sea)
+})
+while wait(1) do
+    local sea2
+    if game.PlaceId == 2753915549 then
+        sea2 = 1
+    elseif game.PlaceId == 4442272183 then
+        sea2 = 2
+    elseif game.PlaceId == 4442272183 then
+        sea2 = 3
+    end             
+    if game:GetService("Players").LocalPlayer.Data.Level.Value > level then
+        level = game:GetService("Players").LocalPlayer.Data.Level.Value
+        syn.request({
+            Url    = des.. Player,
+            Method = "POST",
+            Body   = tostring(level)
+        })
+    end
+    if sea2 ~= sea then
+        sea = sea2
+        syn.request({
+            Url    = ali.. Player,
+            Method = "POST",
+            Body   = tostring(sea)
+        })
+    end    
+end
