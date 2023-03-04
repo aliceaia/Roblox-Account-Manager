@@ -22,6 +22,8 @@ syn.request({
     Method = "POST",
     Body   = tostring(sea)
 })
+local timec
+timec = tick()
 while wait(1) do
     local sea2
     if game.PlaceId == 2753915549 then
@@ -46,5 +48,8 @@ while wait(1) do
             Method = "POST",
             Body   = tostring(sea)
         })
-    end    
+    end 
+	if tick() - timec > 60 and game:GetService("Players").LocalPlayer.Data.Level.Value == level then
+		game.Players.LocalPlayer:Kick()
+	end	
 end
