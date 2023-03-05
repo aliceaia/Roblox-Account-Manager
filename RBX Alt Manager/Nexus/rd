@@ -5,6 +5,8 @@ local des    = "http://localhost:7963/SetDescription?Account="
 local ali = "http://localhost:7963/SetAlias?Account="
 level = game:GetService("Players").LocalPlayer.Data.Level.Value
 local sea
+local exp
+exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
 if game.PlaceId == 2753915549 then
     sea = 1
 elseif game.PlaceId == 4442272183 then
@@ -24,6 +26,7 @@ syn.request({
 })
 local timec
 timec = tick()
+
 while wait(1) do
     local sea2
     if game.PlaceId == 2753915549 then
@@ -36,6 +39,7 @@ while wait(1) do
     if game:GetService("Players").LocalPlayer.Data.Level.Value > level then
         level = game:GetService("Players").LocalPlayer.Data.Level.Value
         timec = tick()
+        exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
         syn.request({
             Url    = des.. Player,
             Method = "POST",
@@ -50,11 +54,12 @@ while wait(1) do
             Body   = tostring(sea)
         })
     end 
-    if tick() - timec > 180 then
-        if game:GetService("Players").LocalPlayer.Data.Level.Value == level then
+    if tick() - timec > 60 then
+        if game:GetService("Players").LocalPlayer.Data.Level.Value == level and game:GetService("Players").LocalPlayer.Data.Exp.Value == exp then
             game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer, game.JobId)
         else
             timec = tick()
+            exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
         end     
     end	
 end
