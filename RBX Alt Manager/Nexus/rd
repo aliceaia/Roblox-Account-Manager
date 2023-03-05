@@ -35,6 +35,7 @@ while wait(1) do
     end             
     if game:GetService("Players").LocalPlayer.Data.Level.Value > level then
         level = game:GetService("Players").LocalPlayer.Data.Level.Value
+        timec = tick()
         syn.request({
             Url    = des.. Player,
             Method = "POST",
