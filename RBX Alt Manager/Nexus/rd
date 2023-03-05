@@ -63,7 +63,7 @@ while wait do
 	    	local chEck = tick()
                 local Servers = game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/".. game.PlaceId.. "/servers/Public?sortOrder=Asc&limit=100"))
                 for i,v in pairs(Servers.data) do
-                    if v.playing ~= v.maxPlayers then
+                    if v.playing ~= v.maxPlayers and v.playing > 0 then
 	                game:GetService("StarterGui"):SetCore("SendNotification", { -- Send a notification that it turned off
 	                	Title = "Teleport";
 	                	Text = "Wait for change server.";
