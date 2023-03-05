@@ -49,9 +49,11 @@ while wait(1) do
             Body   = tostring(sea)
         })
     end 
-    if tick() - timec > 120 and game:GetService("Players").LocalPlayer.Data.Level.Value == level then
-        game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer, game.JobId)
-    else
-        timec = tick()
+    if tick() - timec > 120 then
+        if game:GetService("Players").LocalPlayer.Data.Level.Value == level then
+            game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer, game.JobId)
+        else
+            timec = tick()
+        end     
     end	
 end
