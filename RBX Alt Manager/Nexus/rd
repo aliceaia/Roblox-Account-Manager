@@ -50,6 +50,6 @@ while wait(1) do
         })
     end 
 	if tick() - timec > 60 and game:GetService("Players").LocalPlayer.Data.Level.Value == level then
-		game.Players.LocalPlayer:Kick()
+		game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer, game.JobId)
 	end	
 end
