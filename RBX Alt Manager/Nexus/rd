@@ -66,10 +66,12 @@ while wait do
                         wait2 = false
                     end
                 end
+                sleep(1)
             end    
         else
             timec = tick()
             exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
         end     
     end
+    sleep(1)
 end
