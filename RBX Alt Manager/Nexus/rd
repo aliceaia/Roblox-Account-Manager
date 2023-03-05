@@ -63,14 +63,15 @@ while wait do
 	    	local chEck = tick()
                 local Servers = game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/".. game.PlaceId.. "/servers/Public?sortOrder=Asc&limit=100"))
                 for i,v in pairs(Servers.data) do
-                    repeat task.wait() until v.playing ~= v.maxPlayers and v.playing > 0
-	                game:GetService("StarterGui"):SetCore("SendNotification", { -- Send a notification that it turned off
-	                	Title = "Teleport";
-	                	Text = "Wait for change server.";
-                	})                
-                        game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, v.id)
-                        wait2 = false
-			break
+                    if v.playing ~= nil and v.playing < 5 then
+                    	game:GetService("StarterGui"):SetCore("SendNotification", { -- Send a notification that it turned off
+                    		Title = "Teleport";
+                    		Text = "Wait for change server.";
+                    	})                
+                    	game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer, v.id)
+                    	wait2 = false
+                    	break
+                    end	
                 end
                 repeat task.wait() until  tick() - chEck > 1
             end    
