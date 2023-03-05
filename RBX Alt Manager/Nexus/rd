@@ -26,8 +26,9 @@ syn.request({
 })
 local timec
 timec = tick()
-
-while wait(1) do
+local wait = true
+local wait2 = true
+while wait do
     local sea2
     if game.PlaceId == 2753915549 then
         sea2 = 1
@@ -56,10 +57,19 @@ while wait(1) do
     end 
     if tick() - timec > 60 then
         if game:GetService("Players").LocalPlayer.Data.Level.Value == level and game:GetService("Players").LocalPlayer.Data.Exp.Value == exp then
-            game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer, game.JobId)
+            wait = false
+            while wait2 do
+                local Servers = game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"))
+                for i,v in pairs(Servers.data) do
+                    if v.playing < 3 and v.ping < 100 then
+                        game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, v.id)
+                        wait2 = false
+                    end
+                end
+            end    
         else
             timec = tick()
             exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
         end     
-    end	
+    end
 end
