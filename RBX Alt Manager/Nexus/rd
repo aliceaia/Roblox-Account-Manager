@@ -60,6 +60,10 @@ while wait do
             wait = false
             while wait2 do
                 local Servers = game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"))
+                game:GetService("StarterGui"):SetCore("SendNotification", { -- Send a notification that it turned off
+	                Title = "Teleport";
+	                Text = "Wait for change server.";
+                })                
                 for i,v in pairs(Servers.data) do
                     if tonumber(v.playing) < 5 and tonumber(v.ping) < 100 then
                         game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, v.id)
