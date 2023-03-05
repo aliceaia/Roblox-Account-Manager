@@ -61,7 +61,7 @@ while wait do
             while wait2 do
                 local Servers = game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"))
                 for i,v in pairs(Servers.data) do
-                    if v.playing < 3 and v.ping < 100 then
+                    if tonumber(v.playing) < 5 and tonumber(v.ping) < 100 then
                         game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, v.id)
                         wait2 = false
                     end
