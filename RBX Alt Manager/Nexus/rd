@@ -5,7 +5,7 @@ local des    = "http://localhost:7963/SetDescription?Account="
 local ali = "http://localhost:7963/SetAlias?Account="
 level = game:GetService("Players").LocalPlayer.Data.Level.Value
 local sea
-local exp
+
 exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
 if game.PlaceId == 2753915549 then
     sea = 1
@@ -28,6 +28,7 @@ local timec
 timec = tick()
 local wait = true
 local wait2 = true
+local exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
 while wait do
     local errorProtect = tick()
     local sea2
@@ -38,7 +39,6 @@ while wait do
     elseif game.PlaceId == 4442272183 then
         sea2 = 3
     end             
-    exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
     if game:GetService("Players").LocalPlayer.Data.Level.Value > level then
         level = game:GetService("Players").LocalPlayer.Data.Level.Value
         timec = tick()
