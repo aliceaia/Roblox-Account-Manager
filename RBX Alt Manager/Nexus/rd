@@ -17,7 +17,7 @@ end
 syn.request({
     Url    = des.. Player,
     Method = "POST",
-    Body   = tostring(level)
+    Body   = tostring(level).. " ".. os.date('%m/%d/%Y %I:%M:%S %p')
 })
 syn.request({
     Url    = ali.. Player,
@@ -38,14 +38,14 @@ while wait do
     elseif game.PlaceId == 4442272183 then
         sea2 = 3
     end             
+	exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
     if game:GetService("Players").LocalPlayer.Data.Level.Value > level then
         level = game:GetService("Players").LocalPlayer.Data.Level.Value
         timec = tick()
-        exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
         syn.request({
             Url    = des.. Player,
             Method = "POST",
-            Body   = tostring(level)
+            Body   = tostring(level).. " ".. os.date('%m/%d/%Y %I:%M:%S %p')
         })
     end
     if sea2 ~= sea then
@@ -57,6 +57,11 @@ while wait do
         })
     end 
     if tick() - timec > 60 then
+		syn.request({
+			Url    = des.. Player,
+			Method = "POST",
+			Body   = tostring(level).. " ".. os.date('%m/%d/%Y %I:%M:%S %p')
+		})
         if game:GetService("Players").LocalPlayer.Data.Level.Value == level and game:GetService("Players").LocalPlayer.Data.Exp.Value == exp then
             wait = false
             while wait2 do
@@ -64,14 +69,15 @@ while wait do
                 local Servers = game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/".. game.PlaceId.. "/servers/Public?sortOrder=Asc&limit=100"))
                 for i,v in pairs(Servers.data) do
                     if v.playing ~= nil and v.playing < 5 then
-                    	game:GetService("StarterGui"):SetCore("SendNotification", { -- Send a notification that it turned off
-                    		Title = "Teleport";
-                    		Text = "Wait for change server.";
-                    	})                
-                    	game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer, v.id)
-                    	wait2 = false
-                    	break
-                    end	
+						game:GetService("StarterGui"):SetCore("SendNotification", { -- Send a notification that it turned off
+							Title = "Teleport";
+							Text = "Wait for change server.";
+						})                
+						game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer, v.id)
+						--game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, v.id)
+						wait2 = false
+						break
+					end	
                 end
                 repeat task.wait() until  tick() - chEck > 1
             end    
