@@ -57,7 +57,7 @@ while wait do
             Body   = tostring(sea)
         })
     end 
-    if tick() - timec > 60 then
+    if tick() - timec > 120 then
         syn.request({
             Url    = des.. Player,
             Method = "POST",
