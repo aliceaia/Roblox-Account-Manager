@@ -58,7 +58,8 @@ local sk = false
 local ec = false
 local dt = false
 local gh = false
-while true do
+local resp
+while wait(120) do
     -- for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
     -- if v:IsA("Tool") then
     -- melee2 = v.Name
@@ -191,54 +192,72 @@ while true do
     end
     if sea2 ~= sea then
         sea = sea2
-        syn.request(
+        resp =
+            syn.request(
             {
                 Url = ali .. Player,
                 Method = "POST",
                 Body = tostring(sea)
             }
         )
+        repeat
+            task.wait()
+        until resp.Success == true
     end
     if game:GetService("Players").LocalPlayer.Data.Level.Value > level then
         level = game:GetService("Players").LocalPlayer.Data.Level.Value
         exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
-        syn.request(
+        resp =
+            syn.request(
             {
                 Url = des .. Player,
                 Method = "POST",
                 Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
             }
         )
-        wait(1)
+        repeat
+            task.wait()
+        until resp.Success == true
     end
     if game:GetService("Players").LocalPlayer.Data.Level.Value > 2449 then
         if mlcount > 2 and melee ~= "Godhuman" then
-            syn.request(
+            resp =
+                syn.request(
                 {
                     Url = des .. Player,
                     Method = "POST",
                     Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
                 }
             )
+            repeat
+                task.wait()
+            until resp.Success == true
             game:Shutdown()
         elseif melee == "Godhuman" then
-            syn.request(
+            resp =
+                syn.request(
                 {
                     Url = des .. Player,
                     Method = "POST",
                     Body = tostring(level) .. " " .. "GOD" .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
                 }
             )
+            repeat
+                task.wait()
+            until resp.Success == true
             game:Shutdown()
         else
-            syn.request(
+            resp =
+                syn.request(
                 {
                     Url = des .. Player,
                     Method = "POST",
                     Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
                 }
             )
+            repeat
+                task.wait()
+            until resp.Success == true
         end
-        wait(120)
     end
 end
