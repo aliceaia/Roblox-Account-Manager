@@ -58,7 +58,7 @@ local sk = false
 local ec = false
 local dt = false
 local gh = false
-while wait(120) do
+while true do
     -- for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
     -- if v:IsA("Tool") then
     -- melee2 = v.Name
@@ -209,6 +209,7 @@ while wait(120) do
                 Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
             }
         )
+        wait(1)
     end
     if game:GetService("Players").LocalPlayer.Data.Level.Value > 2449 then
         if mlcount > 2 and melee ~= "Godhuman" then
@@ -238,5 +239,6 @@ while wait(120) do
                 }
             )
         end
+        wait(120)
     end
 end
