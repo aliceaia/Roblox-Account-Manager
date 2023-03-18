@@ -247,6 +247,7 @@ while wait(120) do
             until resp.Success == true
             game:Shutdown()
         else
+            wait(60)
             resp =
                 syn.request(
                 {
