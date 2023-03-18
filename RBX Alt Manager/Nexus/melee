@@ -247,7 +247,7 @@ while wait(120) do
             until resp.Success == true
             game:Shutdown()
         else
-            wait(60)
+            
             resp =
                 syn.request(
                 {
@@ -259,6 +259,7 @@ while wait(120) do
             repeat
                 task.wait()
             until resp.Success == true
+            wait(60)
         end
     end
 end
