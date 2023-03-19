@@ -200,6 +200,7 @@ while true do
                         Body = tostring(sea)
                     }
                 )
+                sea = sea2
             end
         end
         level = game:GetService("Players").LocalPlayer.Data.Level.Value
