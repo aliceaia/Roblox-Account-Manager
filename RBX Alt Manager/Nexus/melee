@@ -1,11 +1,14 @@
 settings().Rendering.QualityLevel = 1
-local a = UserSettings():GetService "UserGameSettings"
-a.MasterVolume = 0
+local UGS = UserSettings():GetService "UserGameSettings"
+UGS.MasterVolume = 0
+
 CargoShipper = Instance.new("ScreenGui")
 Title = Instance.new("TextLabel")
+
 CargoShipper.Name = "CargoShipper"
 CargoShipper.Parent = game.CoreGui
 CargoShipper.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
 Title.Name = "Title"
 Title.Parent = CargoShipper
 Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -18,173 +21,219 @@ Title.Text = "RAM LOADED"
 Title.TextColor3 = Color3.fromRGB(217, 88, 28)
 Title.TextSize = 14.000
 Title.TextWrapped = true
-local b = game:GetService("Players").LocalPlayer.Data.Level.Value
-local c = game:GetService("Players").LocalPlayer.Name
-local d = "http://localhost:7963/SetDescription?Account="
-local e = "http://localhost:7963/SetAlias?Account="
-local f
+
+local level = game:GetService("Players").LocalPlayer.Data.Level.Value
+local Player = game:GetService("Players").LocalPlayer.Name
+local des = "http://localhost:7963/SetDescription?Account="
+local ali = "http://localhost:7963/SetAlias?Account="
+local sea
 if game.PlaceId == 2753915549 then
-    f = 1
+    sea = 1
 elseif game.PlaceId == 4442272183 then
-    f = 2
+    sea = 2
 elseif game.PlaceId == 7449423635 then
-    f = 3
+    sea = 3
 end
-syn.request({Url = e .. c, Method = "POST", Body = tostring(f)})
-local g = true
-local h = game:GetService("UserInputService")
-local i = game:GetService "UserInputService"
-local j = game:GetService "RunService"
-j:Set3dRenderingEnabled(false)
-h.InputBegan:Connect(
-    function(k)
-        if k.KeyCode == Enum.KeyCode.L then
-            if g == false then
-                j:Set3dRenderingEnabled(false)
-                g = true
-            else
-                j:Set3dRenderingEnabled(true)
-                g = false
-            end
-        end
-    end
+syn.request(
+    {
+        Url = ali .. Player,
+        Method = "POST",
+        Body = tostring(sea)
+    }
 )
-local l
-local m = 0
-local n = false
-local o = false
-local p = false
-local q = false
-local r = false
-local s = false
-local t
-local u
+
+-- local white = true
+-- local key = game:GetService("UserInputService")
+-- local InputService = game:GetService "UserInputService"
+-- local RunService = game:GetService "RunService"
+-- RunService:Set3dRenderingEnabled(false)
+-- key.InputBegan:Connect(
+    -- function(input)
+        -- if input.KeyCode == Enum.KeyCode.L then
+            -- if white == false then
+                -- RunService:Set3dRenderingEnabled(false)
+                -- white = true
+            -- else
+                -- RunService:Set3dRenderingEnabled(true)
+                -- white = false
+            -- end
+        -- end
+    -- end
+)
+
+local melee
+local mlcount = 0
+local ds = false
+local sh = false
+local sk = false
+local ec = false
+local dt = false
+local gh = false
+local resp
+local sea2
 while true do
-    if b < 2450 then
-        if game:GetService("Players").LocalPlayer.Data.Level.Value > b then
-            b = game:GetService("Players").LocalPlayer.Data.Level.Value
+    if level < 2450 then
+        if game:GetService("Players").LocalPlayer.Data.Level.Value > level then
+            level = game:GetService("Players").LocalPlayer.Data.Level.Value
             if game.PlaceId == 2753915549 then
-                u = 1
+                sea2 = 1
             elseif game.PlaceId == 4442272183 then
-                u = 2
+                sea2 = 2
             elseif game.PlaceId == 7449423635 then
-                u = 3
+                sea2 = 3
             end
-            if u ~= f then
-                f = u
-                t = syn.request({Url = e .. c, Method = "POST", Body = tostring(f)})
+            if sea2 ~= sea then
+                sea = sea2
+                resp =
+                    syn.request(
+                    {
+                        Url = ali .. Player,
+                        Method = "POST",
+                        Body = tostring(sea)
+                    }
+                )
                 repeat
                     task.wait()
-                until t.Success == true
+                until resp.Success == true
             end
-            t =
+
+            resp =
                 syn.request(
                 {
-                    Url = d .. c,
+                    Url = des .. Player,
                     Method = "POST",
-                    Body = tostring(b) .. " " .. tostring(m) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
+                    Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
                 }
             )
             repeat
                 task.wait()
-            until t.Success == true
+            until resp.Success == true
         end
     else
-        if n == false then
-            local v = {[1] = "BuyDeathStep", [2] = true}
-            DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v))
+        if ds == false then
+            local args = {
+                [1] = "BuyDeathStep",
+                [2] = true
+            }
+
+            DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
             if DeathStep == 1 then
-                n = true
-                m = m + 1
+                ds = true
+                mlcount = mlcount + 1
             end
             wait(0.2)
         end
-        if o == false then
-            local v = {[1] = "BuySuperhuman", [2] = true}
-            Superhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v))
+
+        if sh == false then
+            local args = {
+                [1] = "BuySuperhuman",
+                [2] = true
+            }
+
+            Superhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
             if Superhuman == 1 then
-                o = true
-                m = m + 1
+                sh = true
+                mlcount = mlcount + 1
             end
             wait(0.2)
         end
-        if p == false then
-            local v = {[1] = "BuySharkmanKarate", [2] = true}
-            SharkmanKarate = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v))
+
+        if sk == false then
+            local args = {
+                [1] = "BuySharkmanKarate",
+                [2] = true
+            }
+
+            SharkmanKarate = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
             if SharkmanKarate == 1 then
-                p = true
-                m = m + 1
+                sk = true
+                mlcount = mlcount + 1
             end
             wait(0.2)
         end
-        if q == false then
-            local v = {[1] = "BuyElectricClaw", [2] = true}
-            ElectricClaw = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v))
+
+        if ec == false then
+            local args = {
+                [1] = "BuyElectricClaw",
+                [2] = true
+            }
+
+            ElectricClaw = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
             if ElectricClaw == 1 then
-                q = true
-                m = m + 1
+                ec = true
+                mlcount = mlcount + 1
             end
             wait(0.2)
         end
-        if r == false then
-            local v = {[1] = "BuyDragonTalon", [2] = true}
-            DragonTalon = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v))
+
+        if dt == false then
+            local args = {
+                [1] = "BuyDragonTalon",
+                [2] = true
+            }
+
+            DragonTalon = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
             if type(DragonTalon) == "number" then
                 if DragonTalon == 1 then
-                    r = true
-                    m = m + 1
+                    dt = true
+                    mlcount = mlcount + 1
                 end
             end
             wait(0.2)
         end
-        if s == false then
-            local v = {[1] = "BuyGodhuman", [2] = true}
-            Godhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v))
+
+        if gh == false then
+            local args = {
+                [1] = "BuyGodhuman",
+                [2] = true
+            }
+
+            Godhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
             if type(Godhuman) == "number" then
                 if Godhuman == 1 then
-                    s = true
-                    l = "Godhuman"
+                    gh = true
+                    melee = "Godhuman"
                 end
             end
         end
-        if m > 2 and l ~= "Godhuman" then
-            t =
+        if mlcount > 2 and melee ~= "Godhuman" then
+            resp =
                 syn.request(
                 {
-                    Url = d .. c,
+                    Url = des .. Player,
                     Method = "POST",
-                    Body = tostring(b) .. " " .. tostring(m) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
+                    Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
                 }
             )
             repeat
                 task.wait()
-            until t.Success == true
+            until resp.Success == true
             game:Shutdown()
-        elseif l == "Godhuman" then
-            t =
+        elseif melee == "Godhuman" then
+            resp =
                 syn.request(
                 {
-                    Url = d .. c,
+                    Url = des .. Player,
                     Method = "POST",
-                    Body = tostring(b) .. " " .. "GOD" .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
+                    Body = tostring(level) .. " " .. "GOD" .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
                 }
             )
             repeat
                 task.wait()
-            until t.Success == true
+            until resp.Success == true
             game:Shutdown()
         else
-            t =
+            resp =
                 syn.request(
                 {
-                    Url = d .. c,
+                    Url = des .. Player,
                     Method = "POST",
-                    Body = tostring(b) .. " " .. tostring(m) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
+                    Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
                 }
             )
             repeat
                 task.wait()
-            until t.Success == true
+            until resp.Success == true
             wait(60)
         end
     end
