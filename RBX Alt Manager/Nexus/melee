@@ -49,6 +49,7 @@ local sk = false
 local ec = false
 local dt = false
 local gh = false
+local Player = game:GetService("Players").LocalPlayer.Name
 while wait(600) do
     if game:GetService("Players").LocalPlayer.Data.Level.Value then
         if ds == false then
