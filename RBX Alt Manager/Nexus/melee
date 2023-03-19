@@ -40,7 +40,7 @@ syn.request(
     }
 )
 local level
-local white = false
+local white = true
 local key = game:GetService("UserInputService")
 local InputService = game:GetService "UserInputService"
 local RunService = game:GetService "RunService"
