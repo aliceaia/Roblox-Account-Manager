@@ -50,7 +50,7 @@ local ec = false
 local dt = false
 local gh = false
 while wait(600) do
-    if game:GetService("Players").LocalPlayer.Name == 2450 then
+    if game:GetService("Players").LocalPlayer.Data.Level.Value then
         if ds == false then
             local args = {
                 [1] = "BuyDeathStep",
