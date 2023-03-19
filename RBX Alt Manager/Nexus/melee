@@ -42,17 +42,16 @@ syn.request(
 local level
 local white = true
 local key = game:GetService("UserInputService")
---local InputService = game:GetService "UserInputService"
---local RunService = game:GetService "RunService"
-game:GetService("RunService"):Set3dRenderingEnabled(false)
+local RunService = game:GetService("RunService")
+RunService:Set3dRenderingEnabled(false)
 key.InputBegan:Connect(
     function(input)
         if input.KeyCode == Enum.KeyCode.L then
             if white == false then
-                game:GetService("RunService"):Set3dRenderingEnabled(false)
+                RunService:Set3dRenderingEnabled(false)
                 white = true
             else
-                game:GetService("RunService"):Set3dRenderingEnabled(true)
+                RunService:Set3dRenderingEnabled(true)
                 white = false
             end
         end
