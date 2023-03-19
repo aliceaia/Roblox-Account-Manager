@@ -1,4 +1,3 @@
-settings().Rendering.QualityLevel = "Level01"
 local UGS = UserSettings():GetService "UserGameSettings"
 UGS.MasterVolume = 0
 
@@ -193,6 +192,7 @@ while true do
                 sea2 = 3
             end
             if sea2 ~= sea then
+                sea = sea2
                 syn.request(
                     {
                         Url = ali .. Player,
@@ -200,7 +200,6 @@ while true do
                         Body = tostring(sea)
                     }
                 )
-                sea = sea2
             end
         end
         level = game:GetService("Players").LocalPlayer.Data.Level.Value
