@@ -1,3 +1,4 @@
+settings().Rendering.QualityLevel = 1
 local UGS = UserSettings():GetService "UserGameSettings"
 UGS.MasterVolume = 0
 
@@ -21,6 +22,8 @@ Title.TextColor3 = Color3.fromRGB(217, 88, 28)
 Title.TextSize = 14.000
 Title.TextWrapped = true
 
+local level = 1
+local Player = game:GetService("Players").LocalPlayer.Name
 local des = "http://localhost:7963/SetDescription?Account="
 local ali = "http://localhost:7963/SetAlias?Account="
 local sea
@@ -38,10 +41,10 @@ syn.request(
         Body = tostring(sea)
     }
 )
-local level
+
 local white = true
 local key = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
+local RunService = game:GetService "RunService"
 RunService:Set3dRenderingEnabled(false)
 key.InputBegan:Connect(
     function(input)
@@ -67,8 +70,34 @@ local dt = false
 local gh = false
 local sea2
 while true do
-    if game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
+    if game:GetService("Players").LocalPlayer.Data.Level.Value > level then
         level = game:GetService("Players").LocalPlayer.Data.Level.Value
+        if game.PlaceId == 2753915549 then
+            sea2 = 1
+        elseif game.PlaceId == 4442272183 then
+            sea2 = 2
+        elseif game.PlaceId == 7449423635 then
+            sea2 = 3
+        end
+        if sea2 ~= sea then
+            sea = sea2
+                syn.request(
+                {
+                    Url = ali .. Player,
+                    Method = "POST",
+                    Body = tostring(sea)
+                }
+            )
+        end
+            syn.request(
+            {
+                Url = des .. Player,
+                Method = "POST",
+                Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
+            }
+        )
+    end
+    if level == 2450 then
         if ds == false then
             local args = {
                 [1] = "BuyDeathStep",
@@ -181,35 +210,19 @@ while true do
                 task.wait()
             until resp.Success == true
             game:Shutdown()
-        end
-    else
-        if sea < 3 then
-            if game.PlaceId == 2753915549 then
-                sea2 = 1
-            elseif game.PlaceId == 4442272183 then
-                sea2 = 2
-            elseif game.PlaceId == 7449423635 then
-                sea2 = 3
-            end
-            if sea2 ~= sea then
-                sea = sea2
+        else
+            resp =
                 syn.request(
-                    {
-                        Url = ali .. Player,
-                        Method = "POST",
-                        Body = tostring(sea)
-                    }
-                )
-            end
+                {
+                    Url = des .. Player,
+                    Method = "POST",
+                    Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
+                }
+            )
+            repeat
+                task.wait()
+            until resp.Success == true
         end
-        level = game:GetService("Players").LocalPlayer.Data.Level.Value
-        syn.request(
-            {
-                Url = des .. Player,
-                Method = "POST",
-                Body = tostring(level) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
-            }
-        )
     end
-    wait(600)
+	wait(600)
 end
