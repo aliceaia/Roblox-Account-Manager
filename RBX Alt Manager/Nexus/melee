@@ -42,15 +42,6 @@ syn.request(
     }
 )
 
-local exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
--- local Getdes = "http://localhost:7963/GetDescription?Account="
--- local melee
--- for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
--- if v:IsA("Tool") then
--- melee = v.Name
--- end
--- end
-
 local white = true
 local key = game:GetService("UserInputService")
 local InputService = game:GetService "UserInputService"
@@ -70,138 +61,8 @@ key.InputBegan:Connect(
     end
 )
 
-local melee
-local mlcount = 0
-local ds = false
-local sh = false
-local sk = false
-local ec = false
-local dt = false
-local gh = false
 local resp
-while wait(120) do
-    -- for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-    -- if v:IsA("Tool") then
-    -- melee2 = v.Name
-    -- end
-    -- end
-    -- if #game:GetService("Players"):GetPlayers() > 5 then
-    -- wait(60)
-    -- local Servers =
-    -- game.HttpService:JSONDecode(
-    -- game:HttpGet(
-    -- "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"
-    -- )
-    -- )
-    -- for i, v in pairs(Servers.data) do
-    -- if v.playing ~= nil then
-    -- if v.playing < 5 then
-    -- game:GetService("StarterGui"):SetCore(
-    -- "SendNotification",
-    -- {
-    -- -- Send a notification that it turned off
-    -- Title = "Teleport",
-    -- Text = "Wait for change server."
-    -- }
-    -- )
-    -- --print(game.JobId)
-    -- game:GetService("TeleportService"):TeleportToPlaceInstance(
-    -- game.PlaceId,
-    -- v.id,
-    -- game:GetService("Players").LocalPlayer
-    -- )
-    -- --game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, v.id)
-    -- break
-    -- end
-    -- end
-    -- end
-    -- end
-    if ds == false then
-        local args = {
-            [1] = "BuyDeathStep",
-            [2] = true
-        }
-
-        DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-        if DeathStep == 1 then
-            ds = true
-            mlcount = mlcount + 1
-        end
-        wait(0.2)
-    end
-
-    if sh == false then
-        local args = {
-            [1] = "BuySuperhuman",
-            [2] = true
-        }
-
-        Superhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-        if Superhuman == 1 then
-            sh = true
-            mlcount = mlcount + 1
-        end
-        wait(0.2)
-    end
-
-    if sk == false then
-        local args = {
-            [1] = "BuySharkmanKarate",
-            [2] = true
-        }
-
-        SharkmanKarate = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-        if SharkmanKarate == 1 then
-            sk = true
-            mlcount = mlcount + 1
-        end
-        wait(0.2)
-    end
-
-    if ec == false then
-        local args = {
-            [1] = "BuyElectricClaw",
-            [2] = true
-        }
-
-        ElectricClaw = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-        if ElectricClaw == 1 then
-            ec = true
-            mlcount = mlcount + 1
-        end
-        wait(0.2)
-    end
-
-    if dt == false then
-        local args = {
-            [1] = "BuyDragonTalon",
-            [2] = true
-        }
-
-        DragonTalon = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-        if type(DragonTalon) == "number" then
-            if DragonTalon == 1 then
-                dt = true
-                mlcount = mlcount + 1
-            end
-        end
-        wait(0.2)
-    end
-
-    if gh == false then
-        local args = {
-            [1] = "BuyGodhuman",
-            [2] = true
-        }
-
-        Godhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-        if type(Godhuman) == "number" then
-            if Godhuman == 1 then
-                gh = true
-                melee = "Godhuman"
-            end
-        end
-    end
+while true do
     local sea2
     if game.PlaceId == 2753915549 then
         sea2 = 1
@@ -226,60 +87,16 @@ while wait(120) do
     end
     if game:GetService("Players").LocalPlayer.Data.Level.Value > level then
         level = game:GetService("Players").LocalPlayer.Data.Level.Value
-        exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
         resp =
             syn.request(
             {
                 Url = des .. Player,
                 Method = "POST",
-                Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
+                Body = tostring(level) .. " ".. os.date("%m/%d/%Y %I:%M:%S %p")
             }
         )
         repeat
             task.wait()
         until resp.Success == true
-    end
-    if game:GetService("Players").LocalPlayer.Data.Level.Value > 2449 then
-        if mlcount > 2 and melee ~= "Godhuman" then
-            resp =
-                syn.request(
-                {
-                    Url = des .. Player,
-                    Method = "POST",
-                    Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
-                }
-            )
-            repeat
-                task.wait()
-            until resp.Success == true
-            game:Shutdown()
-        elseif melee == "Godhuman" then
-            resp =
-                syn.request(
-                {
-                    Url = des .. Player,
-                    Method = "POST",
-                    Body = tostring(level) .. " " .. "GOD" .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
-                }
-            )
-            repeat
-                task.wait()
-            until resp.Success == true
-            game:Shutdown()
-        else
-            
-            resp =
-                syn.request(
-                {
-                    Url = des .. Player,
-                    Method = "POST",
-                    Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
-                }
-            )
-            repeat
-                task.wait()
-            until resp.Success == true
-            wait(60)
-        end
     end
 end
