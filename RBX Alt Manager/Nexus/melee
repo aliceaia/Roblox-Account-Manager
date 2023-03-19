@@ -43,41 +43,40 @@ syn.request(
 )
 
 local resp
-repeat task.wait() until game:GetService("Players").LocalPlayer.Data.Level.Value > level
-    local sea2
-    if game.PlaceId == 2753915549 then
-        sea2 = 1
-    elseif game.PlaceId == 4442272183 then
-        sea2 = 2
-    elseif game.PlaceId == 7449423635 then
-        sea2 = 3
-    end
-    if sea2 ~= sea then
-        sea = sea2
-        resp =
-            syn.request(
-            {
-                Url = ali .. Player,
-                Method = "POST",
-                Body = tostring(sea)
-            }
-        )
-        repeat
-            task.wait()
-        until resp.Success == true
-    end
-    if game:GetService("Players").LocalPlayer.Data.Level.Value > level then
-        level = game:GetService("Players").LocalPlayer.Data.Level.Value
-        resp =
-            syn.request(
-            {
-                Url = des .. Player,
-                Method = "POST",
-                Body = tostring(level) .. " ".. os.date("%m/%d/%Y %I:%M:%S %p")
-            }
-        )
-        repeat
-            task.wait()
-        until resp.Success == true
-    end
-
+repeat
+    task.wait()
+until game:GetService("Players").LocalPlayer.Data.Level.Value > level
+local sea2
+if game.PlaceId == 2753915549 then
+    sea2 = 1
+elseif game.PlaceId == 4442272183 then
+    sea2 = 2
+elseif game.PlaceId == 7449423635 then
+    sea2 = 3
+end
+if sea2 ~= sea then
+    sea = sea2
+    resp =
+        syn.request(
+        {
+            Url = ali .. Player,
+            Method = "POST",
+            Body = tostring(sea)
+        }
+    )
+    repeat
+        task.wait()
+    until resp.Success == true
+end
+level = game:GetService("Players").LocalPlayer.Data.Level.Value
+resp =
+    syn.request(
+    {
+        Url = des .. Player,
+        Method = "POST",
+        Body = tostring(level) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
+    }
+)
+repeat
+    task.wait()
+until resp.Success == true
