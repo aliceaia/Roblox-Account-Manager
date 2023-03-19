@@ -50,6 +50,25 @@ local exp = game:GetService("Players").LocalPlayer.Data.Exp.Value
 -- melee = v.Name
 -- end
 -- end
+local white = false
+local key = game:GetService("UserInputService")
+local InputService = game:GetService "UserInputService"
+local RunService = game:GetService "RunService"
+
+key.InputBegan:Connect(
+    function(input)
+        if input.KeyCode == Enum.KeyCode.L then
+            if white == false then
+                RunService:Set3dRenderingEnabled(false)
+                white = true
+            else
+                RunService:Set3dRenderingEnabled(true)
+                white = false
+            end
+        end
+    end
+)
+
 local melee
 local mlcount = 0
 local ds = false
