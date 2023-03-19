@@ -43,7 +43,7 @@ syn.request(
 )
 
 local resp
-while true do
+repeat task.wait() until game:GetService("Players").LocalPlayer.Data.Level.Value > level
     local sea2
     if game.PlaceId == 2753915549 then
         sea2 = 1
@@ -80,4 +80,4 @@ while true do
             task.wait()
         until resp.Success == true
     end
-end
+
