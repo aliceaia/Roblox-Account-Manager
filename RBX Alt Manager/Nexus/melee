@@ -1,4 +1,3 @@
-settings().Rendering.QualityLevel = 1
 local UGS = UserSettings():GetService "UserGameSettings"
 UGS.MasterVolume = 0
 
