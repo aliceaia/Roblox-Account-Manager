@@ -1,0 +1,228 @@
+settings().Rendering.QualityLevel = 1
+local UGS = UserSettings():GetService "UserGameSettings"
+UGS.MasterVolume = 0
+
+CargoShipper = Instance.new("ScreenGui")
+Title = Instance.new("TextLabel")
+
+CargoShipper.Name = "CargoShipper"
+CargoShipper.Parent = game.CoreGui
+CargoShipper.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Title.Name = "Title"
+Title.Parent = CargoShipper
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 100.000
+Title.BorderSizePixel = 0
+Title.Size = UDim2.new(0, 189, 0, 52)
+Title.Position = UDim2.new(0.225, 0, 0.922, 0)
+Title.FontFace = Font.new("rbxasset://fonts/families/PressStart2P.json", Enum.FontWeight.Bold)
+Title.Text = "RAM LOADED"
+Title.TextColor3 = Color3.fromRGB(217, 88, 28)
+Title.TextSize = 14.000
+Title.TextWrapped = true
+
+local level = 1
+local Player = game:GetService("Players").LocalPlayer.Name
+local des = "http://localhost:7963/SetDescription?Account="
+local ali = "http://localhost:7963/SetAlias?Account="
+local sea
+if game.PlaceId == 2753915549 then
+    sea = 1
+elseif game.PlaceId == 4442272183 then
+    sea = 2
+elseif game.PlaceId == 7449423635 then
+    sea = 3
+end
+syn.request(
+    {
+        Url = ali .. Player,
+        Method = "POST",
+        Body = tostring(sea)
+    }
+)
+
+-- local white = true
+-- local key = game:GetService("UserInputService")
+-- local RunService = game:GetService("RunService")
+-- RunService:Set3dRenderingEnabled(false)
+-- key.InputBegan:Connect(
+    -- function(input)
+        -- if input.KeyCode == Enum.KeyCode.L then
+            -- if white == false then
+                -- RunService:Set3dRenderingEnabled(false)
+                -- white = true
+            -- else
+                -- RunService:Set3dRenderingEnabled(true)
+                -- white = false
+            -- end
+        -- end
+    -- end
+-- )
+
+local melee
+local mlcount = 0
+local ds = false
+local sh = false
+local sk = false
+local ec = false
+local dt = false
+local gh = false
+local sea2
+while true do
+    if game:GetService("Players").LocalPlayer.Data.Level.Value > level then
+        level = game:GetService("Players").LocalPlayer.Data.Level.Value
+        if game.PlaceId == 2753915549 then
+            sea2 = 1
+        elseif game.PlaceId == 4442272183 then
+            sea2 = 2
+        elseif game.PlaceId == 7449423635 then
+            sea2 = 3
+        end
+        if sea2 ~= sea then
+            sea = sea2
+                syn.request(
+                {
+                    Url = ali .. Player,
+                    Method = "POST",
+                    Body = tostring(sea)
+                }
+            )
+        end
+            syn.request(
+            {
+                Url = des .. Player,
+                Method = "POST",
+                Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
+            }
+        )
+    end
+    if level == 2450 then
+        if ds == false then
+            local args = {
+                [1] = "BuyDeathStep",
+                [2] = true
+            }
+
+            DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            if DeathStep == 1 then
+                ds = true
+                mlcount = mlcount + 1
+            end
+            wait(0.2)
+        end
+
+        if sh == false then
+            local args = {
+                [1] = "BuySuperhuman",
+                [2] = true
+            }
+
+            Superhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            if Superhuman == 1 then
+                sh = true
+                mlcount = mlcount + 1
+            end
+            wait(0.2)
+        end
+
+        if sk == false then
+            local args = {
+                [1] = "BuySharkmanKarate",
+                [2] = true
+            }
+
+            SharkmanKarate = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            if SharkmanKarate == 1 then
+                sk = true
+                mlcount = mlcount + 1
+            end
+            wait(0.2)
+        end
+
+        if ec == false then
+            local args = {
+                [1] = "BuyElectricClaw",
+                [2] = true
+            }
+
+            ElectricClaw = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            if ElectricClaw == 1 then
+                ec = true
+                mlcount = mlcount + 1
+            end
+            wait(0.2)
+        end
+
+        if dt == false then
+            local args = {
+                [1] = "BuyDragonTalon",
+                [2] = true
+            }
+
+            DragonTalon = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            if type(DragonTalon) == "number" then
+                if DragonTalon == 1 then
+                    dt = true
+                    mlcount = mlcount + 1
+                end
+            end
+            wait(0.2)
+        end
+
+        if gh == false then
+            local args = {
+                [1] = "BuyGodhuman",
+                [2] = true
+            }
+
+            Godhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            if type(Godhuman) == "number" then
+                if Godhuman == 1 then
+                    gh = true
+                    melee = "Godhuman"
+                end
+            end
+        end
+        if mlcount > 2 and melee ~= "Godhuman" then
+            resp =
+                syn.request(
+                {
+                    Url = des .. Player,
+                    Method = "POST",
+                    Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
+                }
+            )
+            repeat
+                task.wait()
+            until resp.Success == true
+            game:Shutdown()
+        elseif melee == "Godhuman" then
+            resp =
+                syn.request(
+                {
+                    Url = des .. Player,
+                    Method = "POST",
+                    Body = tostring(level) .. " " .. "GOD" .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
+                }
+            )
+            repeat
+                task.wait()
+            until resp.Success == true
+            game:Shutdown()
+        else
+            resp =
+                syn.request(
+                {
+                    Url = des .. Player,
+                    Method = "POST",
+                    Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
+                }
+            )
+            repeat
+                task.wait()
+            until resp.Success == true
+        end
+    end
+    wait(60)
+end
