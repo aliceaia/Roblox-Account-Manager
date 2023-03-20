@@ -32,6 +32,13 @@ if not isfolder("mrm") then
     makefolder("mrm")
 end
 local upath = "mrm\/" .. uname
+local ds = false
+local sh = false
+local sk = false
+local ec = false
+local dt = false
+local gh = false
+
 while true do
     if game:GetService("Players").LocalPlayer.Data.Level.Value < 2450 then
         if game.PlaceId ~= sea then
