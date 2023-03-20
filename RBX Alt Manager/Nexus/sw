@@ -107,6 +107,7 @@ while true do
                 melee = "Godhuman"
             end
         end
+        wait(0.2)
         local level = game:GetService("Players").LocalPlayer.Data.Level.Value
         if melee ~= "Godhuman" then
             syn.request(
