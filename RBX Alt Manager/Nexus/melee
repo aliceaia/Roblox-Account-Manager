@@ -97,7 +97,7 @@ while true do
             }
         )
     end
-    if level == 2450 then
+    if game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
         if ds == false then
             local args = {
                 [1] = "BuyDeathStep",
