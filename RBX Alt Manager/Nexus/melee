@@ -42,23 +42,23 @@ syn.request(
     }
 )
 
-local white = true
-local key = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
-RunService:Set3dRenderingEnabled(false)
-key.InputBegan:Connect(
-    function(input)
-        if input.KeyCode == Enum.KeyCode.L then
-            if white == false then
-                RunService:Set3dRenderingEnabled(false)
-                white = true
-            else
-                RunService:Set3dRenderingEnabled(true)
-                white = false
-            end
-        end
-    end
-)
+-- local white = true
+-- local key = game:GetService("UserInputService")
+-- local RunService = game:GetService("RunService")
+-- RunService:Set3dRenderingEnabled(false)
+-- key.InputBegan:Connect(
+    -- function(input)
+        -- if input.KeyCode == Enum.KeyCode.L then
+            -- if white == false then
+                -- RunService:Set3dRenderingEnabled(false)
+                -- white = true
+            -- else
+                -- RunService:Set3dRenderingEnabled(true)
+                -- white = false
+            -- end
+        -- end
+    -- end
+-- )
 
 local melee
 local mlcount = 0
@@ -70,33 +70,6 @@ local dt = false
 local gh = false
 local sea2
 while true do
-    if game:GetService("Players").LocalPlayer.Data.Level.Value > level + 50 then
-        level = game:GetService("Players").LocalPlayer.Data.Level.Value
-        if game.PlaceId == 2753915549 then
-            sea2 = 1
-        elseif game.PlaceId == 4442272183 then
-            sea2 = 2
-        elseif game.PlaceId == 7449423635 then
-            sea2 = 3
-        end
-        if sea2 ~= sea then
-            sea = sea2
-                syn.request(
-                {
-                    Url = ali .. Player,
-                    Method = "POST",
-                    Body = tostring(sea)
-                }
-            )
-        end
-            syn.request(
-            {
-                Url = des .. Player,
-                Method = "POST",
-                Body = tostring(level) .. " " .. tostring(mlcount) .. " " .. os.date("%m/%d/%Y %I:%M:%S %p")
-            }
-        )
-    end
     if game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
         if ds == false then
             local args = {
@@ -224,5 +197,5 @@ while true do
             until resp.Success == true
         end
     end
-	wait(60)
+	wait(120)
 end
