@@ -38,7 +38,7 @@ while true do
             sea = game.PlaceId
         end
         writefile(upath, sea)
-    else
+    elseif game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
         local args = {
             [1] = "BuyDeathStep",
             [2] = true
