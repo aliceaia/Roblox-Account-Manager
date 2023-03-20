@@ -22,7 +22,7 @@ Title.TextColor3 = Color3.fromRGB(217, 88, 28)
 Title.TextSize = 14.000
 Title.TextWrapped = true
 
-local level = 1
+local level = game:GetService("Players").LocalPlayer.Data.Level.Value
 local Player = game:GetService("Players").LocalPlayer.Name
 local des = "http://localhost:7963/SetDescription?Account="
 local ali = "http://localhost:7963/SetAlias?Account="
@@ -70,7 +70,7 @@ local dt = false
 local gh = false
 local sea2
 while true do
-    if game:GetService("Players").LocalPlayer.Data.Level.Value > level then
+    if game:GetService("Players").LocalPlayer.Data.Level.Value > level + 50 then
         level = game:GetService("Players").LocalPlayer.Data.Level.Value
         if game.PlaceId == 2753915549 then
             sea2 = 1
