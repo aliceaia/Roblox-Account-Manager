@@ -109,7 +109,7 @@ while true do
         end
         wait(0.2)
         local level = game:GetService("Players").LocalPlayer.Data.Level.Value
-        if melee ~= "Godhuman" then
+        if mlcount > 2 and melee ~= "Godhuman" then
             syn.request(
                 {
                     Url = des .. Player,
