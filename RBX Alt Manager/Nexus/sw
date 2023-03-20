@@ -46,7 +46,7 @@ while true do
         end
         writefile(upath, sea)
     elseif game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
-    if ds = false then    
+    if ds == false then    
         local args = {
             [1] = "BuyDeathStep",
             [2] = true
@@ -54,7 +54,7 @@ while true do
 
         DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
         if DeathStep == 1 then
-            ds == true
+            ds = true
             mlcount = mlcount + 1
         end
         wait(0.2)
@@ -124,7 +124,7 @@ while true do
         Godhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
         if type(Godhuman) == "number" then
             if Godhuman == 1 then
-                gh == true
+                gh = true
                 melee = "Godhuman"
             end
         end
