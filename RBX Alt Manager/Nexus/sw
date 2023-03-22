@@ -32,19 +32,14 @@ if not isfolder("mrm") then
     makefolder("mrm")
 end
 local upath = "mrm\/" .. uname
-local ds    = false
-local sh    = false
-local sk    = false
-local ec    = false
-local dt    = false
-local gh    = false
+local ds = false
+local sh = false
+local sk = false
+local ec = false
+local dt = false
+local gh = false
 while true do
-    if game:GetService("Players").LocalPlayer.Data.Level.Value < 2450 then
-        if game.PlaceId ~= sea then
-            sea = game.PlaceId
-        end
-        writefile(upath, sea)
-    elseif game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
+    if game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
         for i = 6, 1, -1 do
             if ds == false then
                 local args = {
@@ -53,7 +48,7 @@ while true do
                 }
                 DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
                 if DeathStep == 1 then
-                    ds    = true
+                    ds = true
                     melee = "DeathStep "
                     mlcount = mlcount + 1
                 end
