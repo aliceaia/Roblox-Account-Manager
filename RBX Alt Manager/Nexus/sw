@@ -58,7 +58,6 @@ while true do
                     melee = "DeathStep "
                 end
             end
-            wait(0.2)
             if sh == false then
                 local args = {
                     [1] = "BuySuperhuman",
@@ -71,7 +70,6 @@ while true do
                     melee = melee .. "Superhuman "
                 end
             end
-            wait(0.2)
             if sk == false then
                 local args = {
                     [1] = "BuySharkmanKarate",
@@ -84,7 +82,6 @@ while true do
                     melee = melee .. "SharkmanKarate "
                 end
             end
-            wait(0.2)
             if ec == false then
                 local args = {
                     [1] = "BuyElectricClaw",
@@ -97,7 +94,6 @@ while true do
                     melee = melee .. "ElectricClaw "
                 end
             end
-            wait(0.2)
             if dt == false then
                 local args = {
                     [1] = "BuyDragonTalon",
@@ -112,7 +108,6 @@ while true do
                     end
                 end
             end
-            wait(0.2)
             if gh == false then
                 local args = {
                     [1] = "BuyGodhuman",
