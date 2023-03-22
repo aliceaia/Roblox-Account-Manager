@@ -39,7 +39,12 @@ local ec = false
 local dt = false
 local gh = false
 while true do
-    if game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
+    if game:GetService("Players").LocalPlayer.Data.Level.Value < 2450 then
+        if game.PlaceId ~= sea then
+            sea = game.PlaceId
+        end
+        writefile(upath, sea)
+    elseif game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
         for i = 6, 1, -1 do
             if ds == false then
                 local args = {
@@ -149,6 +154,7 @@ while true do
                 }
             )
             writefile(upath, sea .. " " .. level)
+            game:Shutdown()
         end
     end
     wait(120)
