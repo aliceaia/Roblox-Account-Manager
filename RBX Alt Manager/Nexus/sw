@@ -45,7 +45,7 @@ while true do
             sea = game.PlaceId
         end
         writefile(upath, sea)
-    else
+    elseif game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
         if ds == false then
             local args = {
                 [1] = "BuyDeathStep",
@@ -55,7 +55,7 @@ while true do
             DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
             if DeathStep == 1 then
                 ds = true
-                melee = melee .. "DeathStep "
+                melee = "DeathStep "
             end
             wait(0.2)
         end
