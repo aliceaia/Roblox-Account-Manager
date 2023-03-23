@@ -22,24 +22,6 @@ Title.TextColor3 = Color3.fromRGB(217, 88, 28)
 Title.TextSize = 14.000
 Title.TextWrapped = true
 
-local white = true
-local key = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
-RunService:Set3dRenderingEnabled(false)
-key.InputBegan:Connect(
-    function(input)
-        if input.KeyCode == Enum.KeyCode.L then
-            if white == false then
-                RunService:Set3dRenderingEnabled(false)
-                white = true
-            else
-                RunService:Set3dRenderingEnabled(true)
-                white = false
-            end
-        end
-    end
-)
-
 local Player = game:GetService("Players").LocalPlayer.Name
 local UID = game:GetService("Players").LocalPlayer.UserId
 local des = "http://localhost:7963/SetDescription?Account="
@@ -57,103 +39,94 @@ local sk = false
 local ec = false
 local dt = false
 local gh = false
+function calc()
+        local args = {
+            [1] = "BuyDeathStep",
+            [2] = true
+        }
+        DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+        if DeathStep == 1 then
+            ds = true
+            melee = "DeathStep "
+            mlcount = mlcount + 1
+        end
+        wait(0.2)
+        local args = {
+            [1] = "BuySuperhuman",
+            [2] = true
+        }
+
+        Superhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+        if Superhuman == 1 then
+            sh = true
+            melee = melee .. "Superhuman "
+            mlcount = mlcount + 1
+        end
+        wait(0.2)
+        local args = {
+            [1] = "BuySharkmanKarate",
+            [2] = true
+        }
+
+        SharkmanKarate = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+        if SharkmanKarate == 1 then
+            sk = true
+            melee = melee .. "SharkmanKarate "
+            mlcount = mlcount + 1
+        end
+        wait(0.2)
+        local args = {
+            [1] = "BuyElectricClaw",
+            [2] = true
+        }
+
+        ElectricClaw = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+        if ElectricClaw == 1 then
+            ec = true
+            melee = melee .. "ElectricClaw "
+            mlcount = mlcount + 1
+        end
+        wait(0.2)
+        local args = {
+            [1] = "BuyDragonTalon",
+            [2] = true
+        }
+
+        DragonTalon = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+        if type(DragonTalon) == "number" then
+            if DragonTalon == 1 then
+                dt = true
+                melee = melee .. "DragonTalon "
+                mlcount = mlcount + 1
+            end
+        end
+        wait(0.2)
+        local args = {
+            [1] = "BuyGodhuman",
+            [2] = true
+        }
+
+        Godhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+        if type(Godhuman) == "number" then
+            if Godhuman == 1 then
+                gh = true
+                melee = "Godhuman"
+                mlcount = mlcount + 1
+            end
+        end
+        return mlcount
+end
+
 while true do
     if game.PlaceId ~= sea then
         sea = game.PlaceId
     end
     writefile(upath, sea.. " ".. UID)
     if game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
-        for i = 6, 1, -1 do
-            if ds == false then
-                local args = {
-                    [1] = "BuyDeathStep",
-                    [2] = true
-                }
-                DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                if DeathStep == 1 then
-                    ds = true
-                    melee = melee .. "DeathStep "
-                    mlcount = mlcount + 1
-                end
-            end
-            wait(0.2)
-            if sh == false then
-                local args = {
-                    [1] = "BuySuperhuman",
-                    [2] = true
-                }
-
-                Superhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                if Superhuman == 1 then
-                    sh = true
-                    melee = melee .. "Superhuman "
-                    mlcount = mlcount + 1
-                end
-            end
-            wait(0.2)
-            if sk == false then
-                local args = {
-                    [1] = "BuySharkmanKarate",
-                    [2] = true
-                }
-
-                SharkmanKarate = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                if SharkmanKarate == 1 then
-                    sk = true
-                    melee = melee .. "SharkmanKarate "
-                    mlcount = mlcount + 1
-                end
-            end
-            wait(0.2)
-            if ec == false then
-                local args = {
-                    [1] = "BuyElectricClaw",
-                    [2] = true
-                }
-
-                ElectricClaw = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                if ElectricClaw == 1 then
-                    ec = true
-                    melee = melee .. "ElectricClaw "
-                    mlcount = mlcount + 1
-                end
-            end
-            wait(0.2)
-            if dt == false then
-                local args = {
-                    [1] = "BuyDragonTalon",
-                    [2] = true
-                }
-
-                DragonTalon = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                if type(DragonTalon) == "number" then
-                    if DragonTalon == 1 then
-                        dt = true
-                        melee = melee .. "DragonTalon "
-                        mlcount = mlcount + 1
-                    end
-                end
-            end
-            wait(0.2)
-            if gh == false then
-                local args = {
-                    [1] = "BuyGodhuman",
-                    [2] = true
-                }
-
-                Godhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                if type(Godhuman) == "number" then
-                    if Godhuman == 1 then
-                        gh = true
-                        melee = "Godhuman"
-                        mlcount = mlcount + 1
-                    end
-                end
-            end
-        end
-
+        local get = calc()
         local level = game:GetService("Players").LocalPlayer.Data.Level.Value
-        if mlcount > 2 and melee ~= "Godhuman" then
+        if (get > 2) then
+        if melee ~= "Godhuman" then
             syn.request(
                 {
                     Url = des .. Player,
@@ -173,6 +146,7 @@ while true do
             )
             writefile(upath, sea.. " ".. UID.. " " .. level)
             game:Shutdown()
+        end
         end
     end
     wait(120)
