@@ -41,9 +41,10 @@ key.InputBegan:Connect(
 )
 
 local Player = game:GetService("Players").LocalPlayer.Name
+local UID = game:GetService("Players").LocalPlayer.UserId
 local des = "http://localhost:7963/SetDescription?Account="
 local sea = game.PlaceId
-local melee = ""
+local melee
 local mlcount = 0
 local uname = Player .. ".txt"
 if not isfolder("mrm") then
@@ -56,14 +57,12 @@ local sk = false
 local ec = false
 local dt = false
 local gh = false
-
 while true do
-    if game:GetService("Players").LocalPlayer.Data.Level.Value < 2450 then
-        if game.PlaceId ~= sea then
-            sea = game.PlaceId
-        end
-        writefile(upath, sea)
-    elseif game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
+    if game.PlaceId ~= sea then
+        sea = game.PlaceId
+    end
+    writefile(upath, sea.. " ".. UID)
+    if game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
         for i = 6, 1, -1 do
             if ds == false then
                 local args = {
@@ -73,7 +72,7 @@ while true do
                 DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
                 if DeathStep == 1 then
                     ds = true
-                    melee = melee.. "DeathStep "
+                    melee = "DeathStep "
                     mlcount = mlcount + 1
                 end
             end
@@ -162,7 +161,7 @@ while true do
                     Body = tostring(level) .. " " .. melee
                 }
             )
-            writefile(upath, sea .. " " .. level)
+            writefile(upath, sea.. " ".. UID.. " " .. level)
             game:Shutdown()
         elseif melee == "Godhuman" then
             syn.request(
@@ -172,7 +171,7 @@ while true do
                     Body = tostring(level) .. " " .. melee
                 }
             )
-            writefile(upath, sea .. " " .. level)
+            writefile(upath, sea.. " ".. UID.. " " .. level)
             game:Shutdown()
         end
     end
