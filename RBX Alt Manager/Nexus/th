@@ -22,6 +22,24 @@ Title.TextColor3 = Color3.fromRGB(217, 88, 28)
 Title.TextSize = 14.000
 Title.TextWrapped = true
 
+local white = true
+local key = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+RunService:Set3dRenderingEnabled(false)
+key.InputBegan:Connect(
+    function(input)
+        if input.KeyCode == Enum.KeyCode.L then
+            if white == false then
+                RunService:Set3dRenderingEnabled(false)
+                white = true
+            else
+                RunService:Set3dRenderingEnabled(true)
+                white = false
+            end
+        end
+    end
+)
+
 local Player = game:GetService("Players").LocalPlayer.Name
 local UID = game:GetService("Players").LocalPlayer.UserId
 local des = "http://localhost:7963/SetDescription?Account="
@@ -54,7 +72,7 @@ while true do
                 DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
                 if DeathStep == 1 then
                     ds = true
-                    melee = "DeathStep "
+                    melee = melee .. "DeathStep "
                     mlcount = mlcount + 1
                 end
             end
