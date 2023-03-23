@@ -44,7 +44,7 @@ local Player = game:GetService("Players").LocalPlayer.Name
 local UID = game:GetService("Players").LocalPlayer.UserId
 local des = "http://localhost:7963/SetDescription?Account="
 local sea = game.PlaceId
-local melee
+local melee = ""
 local mlcount = 0
 local uname = Player .. ".txt"
 if not isfolder("mrm") then
