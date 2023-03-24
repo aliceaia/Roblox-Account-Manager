@@ -122,9 +122,9 @@ while true do
         sea = game.PlaceId
     end
     writefile(upath, sea.. " ".. UID)
-    if game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
+    if game:GetService("Players").LocalPlayer.Data.Level.Value > 2449 then
         local get = calc()
-        local level = game:GetService("Players").LocalPlayer.Data.Level.Value
+        local level = 2450
         if (get > 2) then
         if melee ~= "Godhuman" then
             syn.request(
