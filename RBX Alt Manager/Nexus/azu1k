@@ -44,7 +44,6 @@ local Player = game:GetService("Players").LocalPlayer.Name
 local UID = game:GetService("Players").LocalPlayer.UserId
 local des = "http://localhost:7963/SetDescription?Account="
 local sea = game.PlaceId
-
 local uname = Player .. ".txt"
 if not isfolder("mrm") then
     makefolder("mrm")
@@ -56,6 +55,21 @@ while true do
         sea = game.PlaceId
     end
     writefile(upath, sea .. " " .. UID)
+    local PointStats = game.Players.localPlayer.Data.Points.Value
+    local dfp = PointStats/3
+    local mlp = PointStats-dfp
+					local args = {
+						[1] = "AddPoint",
+						[2] = "Melee",
+						[3] = mlp
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+					local args = {
+						[1] = "AddPoint",
+						[2] = "Defense",
+						[3] = dfp
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
     if game:GetService("Players").LocalPlayer.Data.Level.Value >= 1000 then
         local level = game:GetService("Players").LocalPlayer.Data.Level.Value
         syn.request(
