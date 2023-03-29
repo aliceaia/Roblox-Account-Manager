@@ -43,7 +43,6 @@ key.InputBegan:Connect(
 local Player = game:GetService("Players").LocalPlayer.Name
 local UID = game:GetService("Players").LocalPlayer.UserId
 local des = "http://localhost:7963/SetDescription?Account="
-local done = "http://localhost:7693/done"
 local sea = game.PlaceId
 local uname = Player .. ".txt"
 if not isfolder("mrm") then
@@ -78,12 +77,6 @@ while wait() do wait()
                 Url = des .. Player,
                 Method = "POST",
                 Body = tostring(level)
-            }
-        )
-        syn.request(
-            {
-                Url = done,
-                Method = "GET"
             }
         )
         writefile(upath, sea .. " " .. UID .. " " .. level)
