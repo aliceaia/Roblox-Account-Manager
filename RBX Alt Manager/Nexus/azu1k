@@ -51,7 +51,7 @@ if not isfolder("mrm") then
 end
 local upath = "mrm\/" .. uname
 
-while true do
+while wait() do wait()
     if game.PlaceId ~= sea then
         sea = game.PlaceId
     end
@@ -89,5 +89,4 @@ while true do
         writefile(upath, sea .. " " .. UID .. " " .. level)
         game:Shutdown()
     end
-    wait(120)
 end
