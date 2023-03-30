@@ -58,7 +58,6 @@ function calc()
         }
         DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
         if DeathStep == 1 then
-            ds = true
             melee = melee.. "DeathStep "
             mlcount = mlcount + 1
         end
@@ -70,7 +69,6 @@ function calc()
 
         Superhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
         if Superhuman == 1 then
-            sh = true
             melee = melee .. "Superhuman "
             mlcount = mlcount + 1
         end
@@ -82,7 +80,6 @@ function calc()
 
         SharkmanKarate = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
         if SharkmanKarate == 1 then
-            sk = true
             melee = melee .. "SharkmanKarate "
             mlcount = mlcount + 1
         end
@@ -94,7 +91,6 @@ function calc()
 
         ElectricClaw = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
         if ElectricClaw == 1 then
-            ec = true
             melee = melee .. "ElectricClaw "
             mlcount = mlcount + 1
         end
@@ -107,7 +103,6 @@ function calc()
         DragonTalon = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
         if type(DragonTalon) == "number" then
             if DragonTalon == 1 then
-                dt = true
                 melee = melee .. "DragonTalon "
                 mlcount = mlcount + 1
             end
@@ -121,7 +116,6 @@ function calc()
         Godhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
         if type(Godhuman) == "number" then
             if Godhuman == 1 then
-                gh = true
                 melee = "Godhuman"
                 mlcount = mlcount + 1
             end
