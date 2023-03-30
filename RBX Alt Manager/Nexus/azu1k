@@ -49,32 +49,32 @@ if not isfolder("mrm") then
     makefolder("mrm")
 end
 local upath = "mrm\/" .. uname
-local ccode = 0
+-- local ccode = 0
 while wait() do wait()
     if game.PlaceId ~= sea then
         sea = game.PlaceId
     end
     writefile(upath, sea .. " " .. UID)
-    if ccode == 0 then
-	local code = {"kittgaming","Sub2Fer999","Enyu_is_Pro","Magicbus","JCWK","Starcodeheo","Bluxxy","THEGREATACE","SUB2GAMERROBOT_EXP1","Sub2OfficialNoobie","StrawHatMaine","SUB2NOOBMASTER123","Sub2Daigrock","Axiore","TantaiGaming"}
-	for i, v in pairs(code) do
-    		game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(v)
-	end
-	ccode = 1
-    end		
-    local PointStats = game.Players.localPlayer.Data.Points.Value
-	local args = {
-    		[1] = "AddPoint",
-    		[2] = "Melee",
-    		[3] = PointStats
-	}
-	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-	local args = {
-    		[1] = "AddPoint",
-    		[2] = "Defense",
-    		[3] = PointStats
-	}
-	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+    -- if ccode == 0 then
+	-- local code = {"kittgaming","Sub2Fer999","Enyu_is_Pro","Magicbus","JCWK","Starcodeheo","Bluxxy","THEGREATACE","SUB2GAMERROBOT_EXP1","Sub2OfficialNoobie","StrawHatMaine","SUB2NOOBMASTER123","Sub2Daigrock","Axiore","TantaiGaming"}
+	-- for i, v in pairs(code) do
+    		-- game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(v)
+	-- end
+	-- ccode = 1
+    -- end		
+    -- local PointStats = game.Players.localPlayer.Data.Points.Value
+	-- local args = {
+    		-- [1] = "AddPoint",
+    		-- [2] = "Melee",
+    		-- [3] = PointStats
+	-- }
+	-- game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+	-- local args = {
+    		-- [1] = "AddPoint",
+    		-- [2] = "Defense",
+    		-- [3] = PointStats
+	-- }
+	-- game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
     if game:GetService("Players").LocalPlayer.Data.Level.Value >= 1000 then
         local level = game:GetService("Players").LocalPlayer.Data.Level.Value
         syn.request(
