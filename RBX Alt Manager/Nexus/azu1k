@@ -63,18 +63,16 @@ while wait() do wait()
 	ccode = 1
     end		
     local PointStats = game.Players.localPlayer.Data.Points.Value
-    local dfp = PointStats/3
-    local mlp = PointStats-dfp
 	local args = {
     		[1] = "AddPoint",
     		[2] = "Melee",
-    		[3] = mlp
+    		[3] = 2
 	}
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 	local args = {
     		[1] = "AddPoint",
     		[2] = "Defense",
-    		[3] = dfp
+    		[3] = 1
 	}
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
     if game:GetService("Players").LocalPlayer.Data.Level.Value >= 1000 then
