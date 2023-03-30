@@ -51,12 +51,6 @@ if not isfolder("mrm") then
     makefolder("mrm")
 end
 local upath = "mrm\/" .. uname
-local ds = false
-local sh = false
-local sk = false
-local ec = false
-local dt = false
-local gh = false
 function calc()
         local args = {
             [1] = "BuyDeathStep",
@@ -65,7 +59,7 @@ function calc()
         DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
         if DeathStep == 1 then
             ds = true
-            melee = "DeathStep "
+            melee = melee.. "DeathStep "
             mlcount = mlcount + 1
         end
         wait(0.2)
@@ -135,7 +129,7 @@ function calc()
         return mlcount
 end
 
-while true do
+while wait() do wait()
     if game.PlaceId ~= sea then
         sea = game.PlaceId
     end
@@ -169,5 +163,4 @@ while true do
         end
         end
     end
-    wait(120)
 end
