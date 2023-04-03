@@ -25,7 +25,7 @@ Title.TextWrapped = true
 local Player = game:GetService("Players").LocalPlayer.Name
 local UID = game:GetService("Players").LocalPlayer.UserId
 local des = "http://localhost:7963/SetDescription?Account="
-local sea = game.PlaceId
+local sea
 
 local uname = Player .. ".txt"
 if not isfolder("mrm") then
@@ -34,8 +34,12 @@ end
 local upath = "mrm\/" .. uname
 
 while wait() do wait()
-    if game.PlaceId ~= sea then
-        sea = game.PlaceId
+    if game.PlaceId == 2753915549 then
+        sea = 2753915549
+    elseif game.PlaceId == 4442272183 then
+        sea = 4442272183
+    elseif game.PlaceId == 7449423635 then
+        sea = 7449423635
     end
     writefile(upath, sea .. " " .. UID)
     if game:GetService("Players").LocalPlayer.Data.Level.Value >= 1000 then
