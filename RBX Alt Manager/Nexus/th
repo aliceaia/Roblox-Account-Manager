@@ -122,7 +122,7 @@ function calc()
     end
     return mlcount
 end
-while wait() do
+while wait(1) do
     wait()
     if game.PlaceId == 2753915549 then
         sea = 2753915549
