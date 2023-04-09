@@ -1,0 +1,69 @@
+settings().Rendering.QualityLevel = 1
+local UGS = UserSettings():GetService "UserGameSettings"
+UGS.MasterVolume = 0
+
+CargoShipper = Instance.new("ScreenGui")
+Title = Instance.new("TextLabel")
+
+CargoShipper.Name = "CargoShipper"
+CargoShipper.Parent = game.CoreGui
+CargoShipper.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Title.Name = "Title"
+Title.Parent = CargoShipper
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 100.000
+Title.BorderSizePixel = 0
+Title.Size = UDim2.new(0, 189, 0, 52)
+Title.Position = UDim2.new(0.225, 0, 0.922, 0)
+Title.FontFace = Font.new("rbxasset://fonts/families/PressStart2P.json", Enum.FontWeight.Bold)
+Title.Text = "RAM LOADED"
+Title.TextColor3 = Color3.fromRGB(217, 88, 28)
+Title.TextSize = 14.000
+Title.TextWrapped = true
+
+local white = true
+local key = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+RunService:Set3dRenderingEnabled(false)
+key.InputBegan:Connect(
+    function(input)
+        if input.KeyCode == Enum.KeyCode.L then
+            if white == false then
+                RunService:Set3dRenderingEnabled(false)
+                white = true
+            else
+                RunService:Set3dRenderingEnabled(true)
+                white = false
+            end
+        end
+    end
+)
+
+local Player = game:GetService("Players").LocalPlayer.Name
+local UID = game:GetService("Players").LocalPlayer.UserId
+local des = "http://localhost:7963/SetDescription?Account="
+local sea = game.PlaceId
+local uname = Player .. ".txt"
+if not isfolder("mrm") then
+    makefolder("mrm")
+end
+local upath = "mrm\/" .. uname
+while wait() do wait()
+    if game.PlaceId ~= sea then
+        sea = game.PlaceId
+    end
+    writefile(upath, sea .. " " .. UID)
+    if game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
+        local level = game:GetService("Players").LocalPlayer.Data.Level.Value
+        syn.request(
+            {
+                Url = des .. Player,
+                Method = "POST",
+                Body = tostring(level)
+            }
+        )
+        writefile(upath, sea .. " " .. UID .. " " .. level)
+        game:Shutdown()
+    end
+end
