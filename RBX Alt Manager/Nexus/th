@@ -154,7 +154,7 @@ while wait(1) do
             for i, v in pairs(RequestgetInventory) do
                 if v.Type == "Sword" then
                     if v.Name == "Cursed Dual Katana" then
-                        sword = "Cursed Dual Katana"
+                        sword = "CDK"
                     end
                 end
             end
@@ -168,7 +168,7 @@ while wait(1) do
             Godhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
             if type(Godhuman) == "number" then
                 if Godhuman == 1 then
-                    melee = "Godhuman"
+                    melee = "GOD"
                 -- mlcount = mlcount + 1
                 end
             end
@@ -189,7 +189,7 @@ while wait(1) do
         -- writefile(upath, sea .. " " .. UID .. " " .. level)
         -- game:Shutdown()
         -- end
-        if melee == "Godhuman" and sword == "Cursed Dual Katana" then
+        if melee == "GOD" and sword == "CDK" then
             local res =
                 syn.request(
                 {
