@@ -173,16 +173,6 @@ while wait(1) do
                 end
             end
         end
-        if sword == "Cursed Dual Katana" then
-            RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
-            for i, v in pairs(RequestgetInventory) do
-                if v.Type == "Sword" then
-                    if v.Name == "Cursed Dual Katana" then
-                        sword_mas = v.Mastery
-                    end
-                end
-            end
-        end
         -- if (get > 2) then
         -- local MyFruit = game:GetService("Players").LocalPlayer.Data.DevilFruit.Value
         -- local level = game:GetService("Players").LocalPlayer.Data.Level.Value
@@ -199,7 +189,7 @@ while wait(1) do
         -- writefile(upath, sea .. " " .. UID .. " " .. level)
         -- game:Shutdown()
         -- end
-        if melee == "Godhuman" and sword_mas == 600 then
+        if melee == "Godhuman" and sword = "Cursed Dual Katana" then
             local res =
                 syn.request(
                 {
