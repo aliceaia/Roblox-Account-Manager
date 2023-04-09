@@ -189,7 +189,7 @@ while wait(1) do
         -- writefile(upath, sea .. " " .. UID .. " " .. level)
         -- game:Shutdown()
         -- end
-        if melee == "Godhuman" and sword = "Cursed Dual Katana" then
+        if melee == "Godhuman" and sword == "Cursed Dual Katana" then
             local res =
                 syn.request(
                 {
