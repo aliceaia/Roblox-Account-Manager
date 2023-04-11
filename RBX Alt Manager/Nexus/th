@@ -125,7 +125,7 @@ while true do
                {
                   Url = des .. Player,
                   Method = "POST",
-                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
+                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Fruit:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
                }
                )
                if res.Success == true then
