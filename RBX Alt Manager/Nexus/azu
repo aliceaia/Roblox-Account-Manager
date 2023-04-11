@@ -89,6 +89,11 @@ while true do
                         Mirror = "None"
                     end
                 end
+                if v.Type == "Blox Fruit" then
+                    if v.Name == "Leopard-Leopard" then
+                        Leo = "Leopard"
+                    end
+                end                
             end
         end
         if melee ~= "GOD" then
@@ -122,12 +127,15 @@ while true do
             end    
         end
         if melee == "GOD" and sword == "CDK" then
+            if Awake ~= "" then
+                Awake = "v2"
+            end    
             local res =
                 syn.request(
                 {
                     Url = des .. Player,
                     Method = "POST",
-                    Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. " ".. Awake.. " ".. Valkyrie.. " ".. Mirror
+                    Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
                 }
             )
             if res.Success == true then
