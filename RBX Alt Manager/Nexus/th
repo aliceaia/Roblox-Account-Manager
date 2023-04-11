@@ -23,22 +23,6 @@ Title.TextSize = 14.000
 Title.TextWrapped = true
 
 local white = true
-local key = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
-RunService:Set3dRenderingEnabled(false)
-key.InputBegan:Connect(
-    function(input)
-        if input.KeyCode == Enum.KeyCode.L then
-            if white == false then
-                RunService:Set3dRenderingEnabled(false)
-                white = true
-            else
-                RunService:Set3dRenderingEnabled(true)
-                white = false
-            end
-        end
-    end
-)
 
 local Player = game:GetService("Players").LocalPlayer.Name
 local UID = game:GetService("Players").LocalPlayer.UserId
@@ -50,6 +34,7 @@ local FruitName
 local Awake = ""
 local Valkyrie = ""
 local Mirror = ""
+local Leo = ""
 local uname = Player .. ".txt"
 if not isfolder("mrm") then
     makefolder("mrm")
@@ -89,6 +74,11 @@ while true do
                         Mirror = "None"
                     end
                 end
+                if v.Type == "Blox Fruit" then
+                    if v.Name == "Leopard-Leopard" then
+                        Leo = "Leopard"
+                    end
+                end                
             end
         end
         if melee ~= "GOD" then
@@ -122,12 +112,15 @@ while true do
             end    
         end
         if melee == "GOD" and sword == "CDK" then
+            if Awake ~= "" then
+                Awake = "v2"
+            end    
             local res =
                 syn.request(
                 {
                     Url = des .. Player,
                     Method = "POST",
-                    Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. " ".. Awake.. " ".. Valkyrie.. " ".. Mirror
+                    Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
                 }
             )
             if res.Success == true then
