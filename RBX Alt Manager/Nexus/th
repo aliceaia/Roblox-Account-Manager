@@ -46,98 +46,17 @@ local des = "http://localhost:7963/SetDescription?Account="
 local sea
 local melee = ""
 local sword = ""
-local mlcount = 0
-local sword_mas
+local FruitName
+local Awake = ""
+local Valkyrie = ""
+local Mirror = ""
 local uname = Player .. ".txt"
 if not isfolder("mrm") then
     makefolder("mrm")
 end
 local upath = "mrm\/" .. uname
--- function calc()
--- local args = {
--- [1] = "BuyDeathStep",
--- [2] = true
--- }
--- DeathStep = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
--- if DeathStep == 1 then
--- melee = melee .. "DeathStep "
--- mlcount = mlcount + 1
--- end
--- wait(0.2)
--- local args = {
--- [1] = "BuySuperhuman",
--- [2] = true
--- }
 
--- Superhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
--- if Superhuman == 1 then
--- melee = melee .. "Superhuman "
--- mlcount = mlcount + 1
--- end
--- wait(0.2)
--- local args = {
--- [1] = "BuySharkmanKarate",
--- [2] = true
--- }
-
--- SharkmanKarate = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
--- if SharkmanKarate == 1 then
--- melee = melee .. "SharkmanKarate "
--- mlcount = mlcount + 1
--- end
--- wait(0.2)
--- local args = {
--- [1] = "BuyElectricClaw",
--- [2] = true
--- }
-
--- ElectricClaw = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
--- if ElectricClaw == 1 then
--- melee = melee .. "ElectricClaw "
--- mlcount = mlcount + 1
--- end
--- wait(0.2)
--- local args = {
--- [1] = "BuyDragonTalon",
--- [2] = true
--- }
-
--- DragonTalon = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
--- if type(DragonTalon) == "number" then
--- if DragonTalon == 1 then
--- melee = melee .. "DragonTalon "
--- mlcount = mlcount + 1
--- end
--- end
--- wait(0.2)
--- if sword ~= "Cursed Dual Katana" then
--- RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
--- for i, v in pairs(RequestgetInventory) do
--- if v.Type == "Sword" then
--- if v.Name == "Cursed Dual Katana" then
--- sword = "Cursed Dual Katana"
--- end
--- end
--- end
--- end
--- if melee ~= "Godhuman" then
--- local args = {
--- [1] = "BuyGodhuman",
--- [2] = true
--- }
-
--- Godhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
--- if type(Godhuman) == "number" then
--- if Godhuman == 1 then
--- melee = "Godhuman"
--- mlcount = mlcount + 1
--- end
--- end
--- end
--- return mlcount
--- end
-while wait(1) do
-    wait()
+while true do
     if game.PlaceId == 2753915549 then
         sea = 2753915549
     elseif game.PlaceId == 4442272183 then
@@ -145,11 +64,10 @@ while wait(1) do
     elseif game.PlaceId == 7449423635 then
         sea = 7449423635
     end
-    writefile(upath, sea .. " " .. UID)
+    writefile(upath, sea.. " ".. UID)
     if game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
-        -- local get = calc()
         local level = game:GetService("Players").LocalPlayer.Data.Level.Value
-        if sword ~= "Cursed Dual Katana" then
+        if sword ~= "CDK" then
             RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
             for i, v in pairs(RequestgetInventory) do
                 if v.Type == "Sword" then
@@ -157,9 +75,23 @@ while wait(1) do
                         sword = "CDK"
                     end
                 end
+                if v.Type == "Wear" then
+                    if v.Name == "Valkyrie Helmet" then
+                        Valkyrie = "Valkyrie"
+                    else
+                        Valkyrie = "None"
+                    end
+                end
+                if v.Type == "Material" then
+                    if v.Name == "Mirror Fractal" then
+                        Mirror = "Mirror"
+                    else
+                        Mirror = "None"
+                    end
+                end
             end
         end
-        if melee ~= "Godhuman" then
+        if melee ~= "GOD" then
             local args = {
                 [1] = "BuyGodhuman",
                 [2] = true
@@ -169,33 +101,33 @@ while wait(1) do
             if type(Godhuman) == "number" then
                 if Godhuman == 1 then
                     melee = "GOD"
-                -- mlcount = mlcount + 1
                 end
             end
         end
-        -- if (get > 2) then
-        -- local MyFruit = game:GetService("Players").LocalPlayer.Data.DevilFruit.Value
-        -- local level = game:GetService("Players").LocalPlayer.Data.Level.Value
-        -- if melee ~= "Godhuman" then
-        -- local res =
-        -- syn.request(
-        -- {
-        -- Url = des .. Player,
-        -- Method = "POST",
-        -- Body = tostring(level) .. " " .. melee .. " " .. MyFruit
-        -- }
-        -- )
-        -- if res.Success == true then
-        -- writefile(upath, sea .. " " .. UID .. " " .. level)
-        -- game:Shutdown()
-        -- end
+        for _i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            if v:IsA("Tool") then
+                if v.ToolTip == "Blox Fruit" then
+                    FruitName = v.Name
+                end
+            end
+        end
+        if Awake == "" then
+            r = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getAwakenedAbilities")
+            if r then
+                for i, v in pairs(r) do
+                    if v["Awakened"] then
+                        Awake = Awake .. i .. " "
+                    end
+                end
+            end    
+        end
         if melee == "GOD" and sword == "CDK" then
             local res =
                 syn.request(
                 {
                     Url = des .. Player,
                     Method = "POST",
-                    Body = tostring(level) .. " " .. melee .. " " .. sword
+                    Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. " ".. Awake.. " ".. Valkyrie.. " ".. Mirror
                 }
             )
             if res.Success == true then
@@ -203,6 +135,6 @@ while wait(1) do
                 game:Shutdown()
             end
         end
-    -- end
     end
+    wait(1)
 end
