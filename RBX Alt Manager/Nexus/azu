@@ -134,7 +134,7 @@ while wait(1) do wait()
     writefile(upath, sea.. " ".. UID)
     if game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
         local level = game:GetService("Players").LocalPlayer.Data.Level.Value
-        if sword ~= "Cursed Dual Katana" then
+        if sword ~= "CDK" then
             RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
             for i, v in pairs(RequestgetInventory) do
                 if v.Type == "Sword" then
@@ -158,7 +158,7 @@ while wait(1) do wait()
                 end
             end
         end
-        if melee ~= "Godhuman" then
+        if melee ~= "GOD" then
             local args = {
                 [1] = "BuyGodhuman",
                 [2] = true
@@ -201,6 +201,5 @@ while wait(1) do wait()
                 game:Shutdown()
             end
         end
-        
     end
 end
