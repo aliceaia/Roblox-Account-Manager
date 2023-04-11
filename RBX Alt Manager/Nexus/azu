@@ -57,97 +57,99 @@ end
 local upath = "mrm\/" .. uname
 
 while true do
-    if game.PlaceId == 2753915549 then
-        sea = 2753915549
-    elseif game.PlaceId == 4442272183 then
-        sea = 4442272183
-    elseif game.PlaceId == 7449423635 then
-        sea = 7449423635
-    end
-    writefile(upath, sea.. " ".. UID)
-    if game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
-        local level = game:GetService("Players").LocalPlayer.Data.Level.Value
-        if sword ~= "CDK" then
-            RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
-            for i, v in pairs(RequestgetInventory) do
-                if v.Type == "Sword" then
-                    if v.Name == "Cursed Dual Katana" then
-                        sword = "CDK"
-                    end
-                end
-                if v.Type == "Wear" then
-                    if v.Name == "Valkyrie Helmet" then
-                        Valkyrie = "Valkyrie"
-                    else
-                        Valkyrie = "None"
-                    end
-                end
-                if v.Type == "Material" then
-                    if v.Name == "Mirror Fractal" then
-                        Mirror = "Mirror"
-                    else
-                        Mirror = "None"
-                    end
-                end
-                if v.Type == "Blox Fruit" then
-                    if v.Name == "Leopard-Leopard" then
-                        Leo = Leo.. "Leopard"
-                    end
-                    if v.Name == "Dragon-Dragon" then
-                        Leo = Leo.. "Dragon"
-                    end    
-                end                
+   if game.PlaceId == 2753915549 then
+      sea = 2753915549
+   elseif game.PlaceId == 4442272183 then
+      sea = 4442272183
+   elseif game.PlaceId == 7449423635 then
+      sea = 7449423635
+   end
+   writefile(upath, sea.. " ".. UID)
+   if game:GetService("Players").LocalPlayer.Data.Level.Value == 2450 then
+      local level = game:GetService("Players").LocalPlayer.Data.Level.Value
+      if sword ~= "CDK" then
+         RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
+         for i, v in pairs(RequestgetInventory) do
+            if v.Type == "Sword" then
+               if v.Name == "Cursed Dual Katana" then
+                  sword = "CDK"
+               end
             end
-        end
-        if melee ~= "GOD" then
-            local args = {
-                [1] = "BuyGodhuman",
-                [2] = true
-            }
+            if v.Type == "Wear" then
+               if v.Name == "Valkyrie Helmet" then
+                  Valkyrie = "Valkyrie"
+               else
+                  Valkyrie = "None"
+               end
+            end
+            if v.Type == "Material" then
+               if v.Name == "Mirror Fractal" then
+                  Mirror = "Mirror"
+               else
+                  Mirror = "None"
+               end
+            end
+            if v.Type == "Blox Fruit" then
+               if v.Name == "Leopard-Leopard" then
+                  Leo = Leo.. "Leopard"
+               end
+               if v.Name == "Dragon-Dragon" then
+                  Leo = Leo.. "Dragon"
+               end
+            end
+         end
+      end
+      if melee ~= "GOD" then
+         local args = {
+            [1] = "BuyGodhuman",
+            [2] = true
+         }
 
-            Godhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-            if type(Godhuman) == "number" then
-                if Godhuman == 1 then
-                    melee = "GOD"
-                end
+         Godhuman = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+         if type(Godhuman) == "number" then
+            if Godhuman == 1 then
+               melee = "GOD"
             end
-        end
-        for _i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-            if v:IsA("Tool") then
-                if v.ToolTip == "Blox Fruit" then
-                    FruitName = v.Name
-                end
+         end
+      end
+      for _i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+         if v:IsA("Tool") then
+            if v.ToolTip == "Blox Fruit" then
+               FruitName = v.Name
             end
-        end
-        if Awake == "" then
-            r = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getAwakenedAbilities")
-            if r then
-                for i, v in pairs(r) do
-                    if v["Awakened"] then
-                        Awake = Awake .. i .. " "
-                    end
-                end
-            end    
-        end
-        if melee == "GOD" and sword == "CDK" then
-            if Awake ~= "" then
-                Awake = "v2"
-            end    
-            if FruitName == "Dough-Dough" or FruitName == "Buddha-Buddha" or FruitName == "Magma-Magma" or FruitName == "Dark-Dark" then
-                local res =
-                    syn.request(
-                    {
-                        Url = des .. Player,
-                        Method = "POST",
-                        Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
-                    }
-                )
-                if res.Success == true then
-                    writefile(upath, sea .. " " .. UID .. " " .. level)
-                    game:Shutdown()
-                end
-            end    
-        end
-    end
-    wait(1)
+         end
+      end
+      if Awake == "" then
+         r = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getAwakenedAbilities")
+         if r then
+            for i, v in pairs(r) do
+               if v["Awakened"] then
+                  Awake = Awake .. i .. " "
+               end
+            end
+         end
+      end
+      if melee == "GOD" and sword == "CDK" then
+         if Awake ~= "" then
+            Awake = "v2"
+         end
+         if FruitName == "Dough-Dough" or FruitName == "Buddha-Buddha" or FruitName == "Magma-Magma" or FruitName == "Dark-Dark" then
+            if Awake == "v2" then
+               local res =
+               syn.request(
+               {
+                  Url = des .. Player,
+                  Method = "POST",
+                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Fruit:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
+               }
+               )
+               if res.Success == true then
+                  writefile(upath, sea .. " " .. UID .. " " .. level)
+                  game:Shutdown()
+               end
+            end
+         end
+      end
+   end
+   wait(1)
 end
