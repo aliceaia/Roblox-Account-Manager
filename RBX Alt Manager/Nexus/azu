@@ -153,7 +153,10 @@ while true do
          if Awake ~= "" then
             Awake = "v2"
          end
-         if FruitName == "Dough-Dough" or FruitName == "Buddha-Buddha" or FruitName == "Magma-Magma" or FruitName == "Dark-Dark" then
+         if Leo == "" then
+            Leo = "None"
+         end
+         if FruitName == "Dough-Dough" or FruitName == "Buddha-Buddha" or FruitName == "Magma-Magma" or FruitName == "Dark-Dark" or  FruitName == "Quake-Quake" then
             if Awake == "v2" then
                local res =
                syn.request(
