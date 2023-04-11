@@ -55,7 +55,7 @@ if not isfolder("mrm") then
 end
 local upath = "mrm\/" .. uname
 
-while wait(1) do wait()
+while true do
     if game.PlaceId ~= sea then
         sea = game.PlaceId
     end
@@ -129,4 +129,5 @@ while wait(1) do wait()
             end
         end
     end
+    wait(1)
 end
