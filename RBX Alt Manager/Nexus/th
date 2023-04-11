@@ -41,6 +41,7 @@ if not isfolder("mrm") then
 end
 local upath = "mrm\/" .. uname
 
+local FruitMastery
 while true do
    if game.PlaceId == 2753915549 then
       sea = 2753915549
@@ -60,6 +61,11 @@ while true do
                   sword = "CDK"
                end
             end
+         end
+      end
+      if Valkyrie ~= "Valkyrie" then
+         RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
+         for i, v in pairs(RequestgetInventory) do
             if v.Type == "Wear" then
                if v.Name == "Valkyrie Helmet" then
                   Valkyrie = "Valkyrie"
@@ -67,6 +73,11 @@ while true do
                   Valkyrie = "None"
                end
             end
+         end
+      end
+      if Mirror ~= "Mirror" then
+         RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
+         for i, v in pairs(RequestgetInventory) do
             if v.Type == "Material" then
                if v.Name == "Mirror Fractal" then
                   Mirror = "Mirror"
@@ -74,6 +85,11 @@ while true do
                   Mirror = "None"
                end
             end
+         end
+      end
+      if Leo == "" then
+         RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
+         for i, v in pairs(RequestgetInventory) do
             if v.Type == "Blox Fruit" then
                if v.Name == "Leopard-Leopard" then
                   Leo = Leo.. "Leopard"
@@ -84,6 +100,8 @@ while true do
             end
          end
       end
+
+
       if melee ~= "GOD" then
          local args = {
             [1] = "BuyGodhuman",
@@ -100,6 +118,7 @@ while true do
       for _i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
          if v:IsA("Tool") then
             if v.ToolTip == "Blox Fruit" then
+               FruitMastery = v.Level.Value
                FruitName = v.Name
             end
          end
@@ -119,13 +138,28 @@ while true do
             Awake = "v2"
          end
          if FruitName == "Dough-Dough" or FruitName == "Buddha-Buddha" or FruitName == "Magma-Magma" or FruitName == "Dark-Dark" then
-            if Awake == "v2" then
+            if Awake == "v2" and FruitMastery >= 400 then
                local res =
                syn.request(
                {
                   Url = des .. Player,
                   Method = "POST",
-                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Fruit:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
+                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
+               }
+               )
+               if res.Success == true then
+                  writefile(upath, sea .. " " .. UID .. " " .. level)
+                  game:Shutdown()
+               end
+            end
+         else
+            if FruitMastery >= 400 then
+               local res =
+               syn.request(
+               {
+                  Url = des .. Player,
+                  Method = "POST",
+                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
                }
                )
                if res.Success == true then
