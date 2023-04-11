@@ -114,8 +114,6 @@ while true do
                         Awake = Awake .. i .. " "
                     end
                 end
-            else
-                Awake = "None"
             end    
         end
         if melee == "GOD" and sword == "CDK" then
