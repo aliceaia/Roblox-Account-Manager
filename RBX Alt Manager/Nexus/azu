@@ -46,6 +46,8 @@ local des = "http://localhost:7963/SetDescription?Account="
 local sea = game.PlaceId
 local melee = ""
 local mlcount = 0
+local FruitName
+local Awake = ""
 local uname = Player .. ".txt"
 if not isfolder("mrm") then
     makefolder("mrm")
@@ -154,13 +156,31 @@ while wait(1) do wait()
                 end
             end
         end
+        for _i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            if v:IsA("Tool") then
+                if v.ToolTip == "Blox Fruit" then
+                    FruitName = v.Name
+                end
+            end
+        end
+        r = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getAwakenedAbilities")
+        if r then
+            for i, v in pairs(r) do
+                if v["Awakened"] then
+                    Awake = Awake .. i .. " "
+                end
+            end
+        else
+            Awake = "None"
+        end
+        
         if melee == "GOD" and sword == "CDK" then
             local res =
                 syn.request(
                 {
                     Url = des .. Player,
                     Method = "POST",
-                    Body = tostring(level) .. " " .. melee .. " " .. sword
+                    Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. " ".. Awake
                 }
             )
             if res.Success == true then
