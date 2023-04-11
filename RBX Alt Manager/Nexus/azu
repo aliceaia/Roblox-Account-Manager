@@ -48,6 +48,8 @@ local melee = ""
 local mlcount = 0
 local FruitName
 local Awake = ""
+local Valkyrie = ""
+local Mirror = ""
 local uname = Player .. ".txt"
 if not isfolder("mrm") then
     makefolder("mrm")
@@ -140,6 +142,20 @@ while wait(1) do wait()
                         sword = "CDK"
                     end
                 end
+                if v.Type == "Wear" then
+                    if v.Name == "Valkyrie Helmet" then
+                        Valkyrie = "Valkyrie"
+                    else
+                        Valkyrie = "None"
+                    end
+                end
+                if v.Type == "Material" then
+                    if v.Name == "Mirror Fractal" then
+                        Mirror = "Mirror"
+                    else
+                        Mirror = "None"
+                    end
+                end
             end
         end
         if melee ~= "Godhuman" then
@@ -180,7 +196,7 @@ while wait(1) do wait()
                 {
                     Url = des .. Player,
                     Method = "POST",
-                    Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. " ".. Awake
+                    Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. " ".. Awake.. " ".. Valkyrie.. " ".. Mirror
                 }
             )
             if res.Success == true then
