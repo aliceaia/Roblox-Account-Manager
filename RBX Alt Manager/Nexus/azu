@@ -85,8 +85,6 @@ while true do
             if v.Type == "Wear" then
                if v.Name == "Valkyrie Helmet" then
                   Valkyrie = "Valkyrie"
-               else
-                  Valkyrie = "None"
                end
             end
          end
@@ -97,8 +95,6 @@ while true do
             if v.Type == "Material" then
                if v.Name == "Mirror Fractal" then
                   Mirror = "Mirror"
-               else
-                  Mirror = "None"
                end
             end
          end
@@ -159,9 +155,6 @@ while true do
       if melee == "GOD" and sword == "CDK" then
          if Awake ~= "" then
             Awake = "v2"
-         end
-         if Leo == "" then
-            Leo = "None"
          end
          local res =
          syn.request(
