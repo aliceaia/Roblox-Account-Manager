@@ -103,7 +103,7 @@ while true do
             end
          end
       end
-      if Leo == "" or Dragon == "" then
+      if Leo == "" then
          RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
          for i, v in pairs(RequestgetInventory) do
             if v.Type == "Blox Fruit" then
@@ -114,6 +114,13 @@ while true do
                      Leo = Leo.. "Leopard"
                   end
                end
+            end
+         end
+      end
+      if Dragon == "" then
+         RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
+         for i, v in pairs(RequestgetInventory) do
+            if v.Type == "Blox Fruit" then
                if v.Name == "Dragon-Dragon" then
                   if Leo == "" then
                      Leo = "Dragon"
@@ -126,7 +133,6 @@ while true do
             end
          end
       end
-
 
       if melee ~= "GOD" then
          local args = {
