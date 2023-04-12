@@ -94,14 +94,20 @@ while true do
                if v.Name == "Leopard-Leopard" then
                   Leo = Leo.. "Leopard"
                end
+            end
+         end
+      end
+      if Dragon == "" then
+         RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
+         for i, v in pairs(RequestgetInventory) do
+            if v.Type == "Blox Fruit" then
                if v.Name == "Dragon-Dragon" then
                   Leo = Leo.. "Dragon"
+                  Dragon = "Dragon"
                end
             end
          end
       end
-
-
       if melee ~= "GOD" then
          local args = {
             [1] = "BuyGodhuman",
@@ -137,36 +143,17 @@ while true do
          if Awake ~= "" then
             Awake = "v2"
          end
-         if FruitName == "Dough-Dough" or FruitName == "Buddha-Buddha" or FruitName == "Magma-Magma" or FruitName == "Dark-Dark" then
-            if Awake == "v2" and FruitMastery >= 300 then
-               local res =
-               syn.request(
-               {
-                  Url = des .. Player,
-                  Method = "POST",
-                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
-               }
-               )
-               if res.Success == true then
-                  writefile(upath, sea .. " " .. UID .. " " .. level)
-                  game:Shutdown()
-               end
-            end
-         else
-            if FruitMastery >= 300 then
-               local res =
-               syn.request(
-               {
-                  Url = des .. Player,
-                  Method = "POST",
-                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
-               }
-               )
-               if res.Success == true then
-                  writefile(upath, sea .. " " .. UID .. " " .. level)
-                  game:Shutdown()
-               end
-            end
+         local res =
+         syn.request(
+         {
+            Url = des .. Player,
+            Method = "POST",
+            Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
+         }
+         )
+         if res.Success == true then
+            writefile(upath, sea .. " " .. UID .. " " .. level)
+            game:Shutdown()
          end
       end
    end
