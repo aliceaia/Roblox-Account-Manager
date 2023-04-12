@@ -108,11 +108,7 @@ while true do
          for i, v in pairs(RequestgetInventory) do
             if v.Type == "Blox Fruit" then
                if v.Name == "Leopard-Leopard" then
-                  if Leo == "" then
-                     Leo = "Leopard"
-                  else
-                     Leo = Leo.. "Leopard"
-                  end
+                  Leo = Leo.. "Leopard"
                end
             end
          end
@@ -122,13 +118,8 @@ while true do
          for i, v in pairs(RequestgetInventory) do
             if v.Type == "Blox Fruit" then
                if v.Name == "Dragon-Dragon" then
-                  if Leo == "" then
-                     Leo = "Dragon"
-                     Dragon = "Dragon"
-                  else
-                     Leo = Leo.. "Dragon"
-                     Dragon = "Dragon"
-                  end
+                  Leo = Leo.. "Dragon"
+                  Dragon = "Dragon"
                end
             end
          end
@@ -188,4 +179,3 @@ while true do
    end
    wait(1)
 end
-
