@@ -40,8 +40,9 @@ if not isfolder("mrm") then
     makefolder("mrm")
 end
 local upath = "mrm\/" .. uname
-
+local Dragon = ""
 local FruitMastery
+
 while true do
    if game.PlaceId == 2753915549 then
       sea = 2753915549
@@ -143,18 +144,35 @@ while true do
          if Awake ~= "" then
             Awake = "v2"
          end
-         if FruitMastery >= 400 then
-            local res =
-            syn.request(
-            {
-               Url = des .. Player,
-               Method = "POST",
-               Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
-            }
-            )
-            if res.Success == true then
-               writefile(upath, sea .. " " .. UID .. " " .. level)
-               game:Shutdown()
+         if FruitName == "Dough-Dough" or FruitName == "Magma-Magma" or FruitName == "Buddha-Buddha" or FruitName == "Dark-Dark" or FruitName == "Quake-Quake" then
+            if FruitMastery >= 400 and Awake == "v2" then
+               local res =
+               syn.request(
+               {
+                  Url = des .. Player,
+                  Method = "POST",
+                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
+               }
+               )
+               if res.Success == true then
+                  writefile(upath, sea .. " " .. UID .. " " .. level)
+                  game:Shutdown()
+               end
+            end
+         else
+            if FruitMastery >= 400 then
+               local res =
+               syn.request(
+               {
+                  Url = des .. Player,
+                  Method = "POST",
+                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
+               }
+               )
+               if res.Success == true then
+                  writefile(upath, sea .. " " .. UID .. " " .. level)
+                  game:Shutdown()
+               end
             end
          end
       end
