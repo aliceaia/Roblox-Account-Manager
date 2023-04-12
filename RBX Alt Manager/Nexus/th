@@ -143,17 +143,19 @@ while true do
          if Awake ~= "" then
             Awake = "v2"
          end
-         local res =
-         syn.request(
-         {
-            Url = des .. Player,
-            Method = "POST",
-            Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
-         }
-         )
-         if res.Success == true then
-            writefile(upath, sea .. " " .. UID .. " " .. level)
-            game:Shutdown()
+         if FruitMastery >= 400 then
+            local res =
+            syn.request(
+            {
+               Url = des .. Player,
+               Method = "POST",
+               Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
+            }
+            )
+            if res.Success == true then
+               writefile(upath, sea .. " " .. UID .. " " .. level)
+               game:Shutdown()
+            end
          end
       end
    end
