@@ -166,48 +166,17 @@ while true do
          if Leo == "" then
             Leo = "None"
          end
-         if FruitName == "Dough-Dough" or FruitName == "Buddha-Buddha" or FruitName == "Magma-Magma" or FruitName == "Dark-Dark" or  FruitName == "Quake-Quake" then
-            if Awake == "v2" then
-               local res =
-               syn.request(
-               {
-                  Url = des .. Player,
-                  Method = "POST",
-                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
-               }
-               )
-               if res.Success == true then
-                  writefile(upath, sea .. " " .. UID .. " " .. level)
-                  game:Shutdown()
-               end
-            else
-               local res =
-               syn.request(
-               {
-                  Url = des .. Player,
-                  Method = "POST",
-                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
-               }
-               )
-               if res.Success == true then
-                  writefile(upath, sea .. " " .. UID .. " " .. level)
-                  game:Shutdown()
-               end
-
-            end
-         else
-            local res =
-            syn.request(
-            {
-               Url = des .. Player,
-               Method = "POST",
-               Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
-            }
-            )
-            if res.Success == true then
-               writefile(upath, sea .. " " .. UID .. " " .. level)
-               game:Shutdown()
-            end
+         local res =
+         syn.request(
+         {
+            Url = des .. Player,
+            Method = "POST",
+            Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
+         }
+         )
+         if res.Success == true then
+            writefile(upath, sea .. " " .. UID .. " " .. level)
+            game:Shutdown()
          end
       end
    end
