@@ -130,7 +130,7 @@ while true do
          }
          )
          if res.Success == true then
-            writefile(upath, sea .. " " .. UID .. " " .. level.. " ".. FruitName)
+            writefile(upath, sea .. " " .. UID .. " " .. level.. " ".. FruitName.. " ".. melee)
             game:Shutdown()
          end
       end
