@@ -139,7 +139,7 @@ while true do
          if Awake ~= "" then
             Awake = "v2"
          end
-         if FruitName == "Dough-Dough" or FruitName == "Magma-Magma" or FruitName == "Buddha-Buddha" or FruitName == "Dark-Dark" or FruitName == "Quake-Quake" then
+         if FruitName == "Dough-Dough" or FruitName == "Magma-Magma" or FruitName == "Buddha-Buddha" or FruitName == "Dark-Dark" or FruitName == "Quake-Quake" or FruitName == "Human-Human: Buddha"then
             if Awake == "v2" then
                local res =
                syn.request(
@@ -164,7 +164,7 @@ while true do
                }
                )
                if res.Success == true then
-                  writefile(upath, sea .. " " .. UID .. " " .. level.. FruitName)
+                  writefile(upath, sea .. " " .. UID .. " " .. level.. " ".. FruitName)
                   game:Shutdown()
                end
          end
