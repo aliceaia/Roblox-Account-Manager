@@ -156,20 +156,21 @@ while true do
                end
             end
          else
-               local res =
-               syn.request(
-               {
-                  Url = des .. Player,
-                  Method = "POST",
-                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " ".. Leo.. " ".. Dragon.. " ".. Valkyrie.. " ".. Mirror
-               }
-               )
-               if res.Success == true then
-                  writefile(upath, sea .. " " .. UID .. " " .. level.. " ".. FruitName)
-                  game:Shutdown()
-               end
+            local res =
+            syn.request(
+            {
+               Url = des .. Player,
+               Method = "POST",
+               Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " ".. Leo.. " ".. Dragon.. " ".. Valkyrie.. " ".. Mirror
+            }
+            )
+            if res.Success == true then
+               writefile(upath, sea .. " " .. UID .. " " .. level.. " ".. FruitName)
+               game:Shutdown()
+            end
          end
       end
    end
    wait(1)
 end
+
