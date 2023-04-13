@@ -69,7 +69,7 @@ while true do
          RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
          for i, v in pairs(RequestgetInventory) do
             if v.Type == "Wear" then
-               if v.Name == "Valkyrie Helmet" then
+               if v.Name == "Valkyrie Helm" then
                   Valkyrie = "Valkyrie"
                end
             end
