@@ -70,8 +70,6 @@ while true do
             if v.Type == "Wear" then
                if v.Name == "Valkyrie Helmet" then
                   Valkyrie = "Valkyrie"
-               else
-                  Valkyrie = "None"
                end
             end
          end
@@ -82,8 +80,6 @@ while true do
             if v.Type == "Material" then
                if v.Name == "Mirror Fractal" then
                   Mirror = "Mirror"
-               else
-                  Mirror = "None"
                end
             end
          end
@@ -93,7 +89,7 @@ while true do
          for i, v in pairs(RequestgetInventory) do
             if v.Type == "Blox Fruit" then
                if v.Name == "Leopard-Leopard" then
-                  Leo = Leo.. "Leopard"
+                  Leo = "Leopard"
                end
             end
          end
@@ -103,7 +99,6 @@ while true do
          for i, v in pairs(RequestgetInventory) do
             if v.Type == "Blox Fruit" then
                if v.Name == "Dragon-Dragon" then
-                  Leo = Leo.. "Dragon"
                   Dragon = "Dragon"
                end
             end
@@ -151,11 +146,11 @@ while true do
                {
                   Url = des .. Player,
                   Method = "POST",
-                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
+                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " ".. Leo.. " ".. Dragon.. " ".. Valkyrie.. " ".. Mirror
                }
                )
                if res.Success == true then
-                  writefile(upath, sea .. " " .. UID .. " " .. level)
+                  writefile(upath, sea .. " " .. UID .. " " .. level.. " ".. FruitName)
                   game:Shutdown()
                end
             end
@@ -166,11 +161,11 @@ while true do
                {
                   Url = des .. Player,
                   Method = "POST",
-                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " Leo:".. Leo.. " Valkyrie:".. Valkyrie.. " Mirror:".. Mirror
+                  Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " ".. Leo.. " ".. Dragon.. " ".. Valkyrie.. " ".. Mirror
                }
                )
                if res.Success == true then
-                  writefile(upath, sea .. " " .. UID .. " " .. level)
+                  writefile(upath, sea .. " " .. UID .. " " .. level.. FruitName)
                   game:Shutdown()
                end
             end
