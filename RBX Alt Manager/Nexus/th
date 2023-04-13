@@ -140,7 +140,7 @@ while true do
             Awake = "v2"
          end
          if FruitName == "Dough-Dough" or FruitName == "Magma-Magma" or FruitName == "Buddha-Buddha" or FruitName == "Dark-Dark" or FruitName == "Quake-Quake" then
-            if FruitMastery >= 400 and Awake == "v2" then
+            if Awake == "v2" then
                local res =
                syn.request(
                {
@@ -155,7 +155,6 @@ while true do
                end
             end
          else
-            if FruitMastery >= 400 then
                local res =
                syn.request(
                {
@@ -168,7 +167,6 @@ while true do
                   writefile(upath, sea .. " " .. UID .. " " .. level.. FruitName)
                   game:Shutdown()
                end
-            end
          end
       end
    end
