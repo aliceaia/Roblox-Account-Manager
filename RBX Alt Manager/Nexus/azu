@@ -79,48 +79,6 @@ while true do
             end
          end
       end
-      if Valkyrie ~= "Valkyrie" then
-         RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
-         for i, v in pairs(RequestgetInventory) do
-            if v.Type == "Wear" then
-               if v.Name == "Valkyrie Helmet" then
-                  Valkyrie = "Valkyrie"
-               end
-            end
-         end
-      end
-      if Mirror ~= "Mirror" then
-         RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
-         for i, v in pairs(RequestgetInventory) do
-            if v.Type == "Material" then
-               if v.Name == "Mirror Fractal" then
-                  Mirror = "Mirror"
-               end
-            end
-         end
-      end
-      if Leo == "" then
-         RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
-         for i, v in pairs(RequestgetInventory) do
-            if v.Type == "Blox Fruit" then
-               if v.Name == "Leopard-Leopard" then
-                  Leo = Leo.. "Leopard"
-               end
-            end
-         end
-      end
-      if Dragon == "" then
-         RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
-         for i, v in pairs(RequestgetInventory) do
-            if v.Type == "Blox Fruit" then
-               if v.Name == "Dragon-Dragon" then
-                  Leo = Leo.. "Dragon"
-                  Dragon = "Dragon"
-               end
-            end
-         end
-      end
-
       if melee ~= "GOD" then
          local args = {
             [1] = "BuyGodhuman",
@@ -131,14 +89,6 @@ while true do
          if type(Godhuman) == "number" then
             if Godhuman == 1 then
                melee = "GOD"
-            end
-         end
-      end
-      for _i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-         if v:IsA("Tool") then
-            if v.ToolTip == "Blox Fruit" then
-               FruitMastery = v.Level.Value
-               FruitName = v.Name
             end
          end
       end
@@ -156,16 +106,45 @@ while true do
          if Awake ~= "" then
             Awake = "v2"
          end
+         for _i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            if v:IsA("Tool") then
+               if v.ToolTip == "Blox Fruit" then
+                  --FruitMastery = v.Level.Value
+                  FruitName = v.Name
+               end
+            end
+         end
+         RequestgetInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
+         for i, v in pairs(RequestgetInventory) do
+            if v.Type == "Wear" then
+               if v.Name == "Valkyrie Helm" then
+                  Valkyrie = "Valkyrie"
+               end
+            end
+            if v.Type == "Material" then
+               if v.Name == "Mirror Fractal" then
+                  Mirror = "Mirror"
+               end
+            end
+            if v.Type == "Blox Fruit" then
+               if v.Name == "Leopard-Leopard" then
+                  Leo = "Leopard"
+               end
+               if v.Name == "Dragon-Dragon" then
+                  Dragon = "Dragon"
+               end
+            end
+         end
          local res =
          syn.request(
          {
             Url = des .. Player,
             Method = "POST",
-            Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " ".. Leo.. " ".. Valkyrie.. " ".. Mirror
+            Body = tostring(level) .. " " .. melee .. " " .. sword.. " ".. FruitName.. Awake.. " ".. Leo.. " ".. Dragon.. " ".. Valkyrie.. " ".. Mirror
          }
          )
          if res.Success == true then
-            writefile(upath, sea .. " " .. UID .. " " .. level)
+            writefile(upath, sea .. " " .. UID .. " " .. level.. " ".. FruitName.. " ".. melee)
             game:Shutdown()
          end
       end
