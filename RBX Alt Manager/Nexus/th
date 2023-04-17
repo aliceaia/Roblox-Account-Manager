@@ -78,17 +78,17 @@ while true do
             end
          end
       end
-      if Awake == "" then
-         r = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getAwakenedAbilities")
-         if r then
-            for i, v in pairs(r) do
-               if v["Awakened"] then
-                  Awake = Awake .. i .. " "
+      if melee == "GOD" and sword == "CDK" then
+         if Awake == "" then
+            r = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getAwakenedAbilities")
+            if r then
+               for i, v in pairs(r) do
+                  if v["Awakened"] then
+                     Awake = Awake .. i .. " "
+                  end
                end
             end
          end
-      end
-      if melee == "GOD" and sword == "CDK" then
          if Awake ~= "" then
             Awake = "v2"
          end
